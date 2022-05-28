@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/FoliFF/myMovieFlix-Client/issues"
   },
-  "homepage": "https://github.com/FoliFF/myMovieFlix-Client#readme"
+  "homepage": "https://github.com/FoliFF/myMovieFlix-Client#readme",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
 }
