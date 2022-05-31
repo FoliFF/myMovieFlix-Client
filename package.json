@@ -2,7 +2,7 @@
   "name": "mymovieflix-client",
   "version": "1.0.0",
   "description": "React app, build the client-side for an app called myFlix based on its existing server-side code (REST API and Databases).",
-  "main": "src/index.html",
+  "source": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel",
@@ -26,6 +26,11 @@
     "react-dom": "^18.1.0"
   },
   "devDependencies": {
-    "parcel": "^2.6.0"
+    "@babel/generator": "^7.18.2",
+    "@babel/parser": "^7.18.4",
+    "@babel/traverse": "^7.18.2",
+    "@parcel/transformer-sass": "^2.6.0",
+    "parcel": "^2.6.0",
+    "process": "^0.11.10"
   }
 }
