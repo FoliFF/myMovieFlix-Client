@@ -3,7 +3,8 @@ import React from 'react';
 export class MovieView extends React.Component {
 
     render() {
-        const { movie } = this.props;
+        const { movie, onBackClick } = this.props;
+
         return (
             <div className='movie-view'>
                 <div className='movie-poster'>
@@ -17,7 +18,7 @@ export class MovieView extends React.Component {
                     <span className='label'>Description: </span>
                     <span className='label'>{movie.Description} </span>
                 </div>
-                <button>Back</button>
+                <button onClick={() => { onBackClick(null); }}>Back</button>
             </div>
         );
     }

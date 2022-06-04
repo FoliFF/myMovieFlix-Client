@@ -26390,9 +26390,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                             _this2.setSelectedMovie(movie);
                         }
                     });
-                })) /*<div className="main-view">
-          {movies.map(movie => <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie) }} />)}
-      </div>*/ ;
+                }));
             }
         }
     ]);
@@ -26776,7 +26774,7 @@ var MovieView = /*#__PURE__*/ function(_React$Component) {
         {
             key: "render",
             value: function render() {
-                var movie = this.props.movie;
+                var _this$props = this.props, movie = _this$props.movie, onBackClick = _this$props.onBackClick;
                 return /*#__PURE__*/ _react["default"].createElement("div", {
                     className: "movie-view"
                 }, /*#__PURE__*/ _react["default"].createElement("div", {
@@ -26795,7 +26793,11 @@ var MovieView = /*#__PURE__*/ function(_React$Component) {
                     className: "label"
                 }, "Description: "), /*#__PURE__*/ _react["default"].createElement("span", {
                     className: "label"
-                }, movie.Description, " ")), /*#__PURE__*/ _react["default"].createElement("button", null, "Back"));
+                }, movie.Description, " ")), /*#__PURE__*/ _react["default"].createElement("button", {
+                    onClick: function onClick() {
+                        onBackClick(null);
+                    }
+                }, "Back"));
             }
         }
     ]);
