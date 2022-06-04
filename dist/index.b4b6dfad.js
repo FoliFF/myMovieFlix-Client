@@ -26358,9 +26358,9 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
     _createClass(MainView1, [
         {
             key: "setSelectedMovie",
-            value: function setSelectedMovie(newMovieSelected) {
+            value: function setSelectedMovie(newSelectedMovie) {
                 this.setState({
-                    selectedMovie: newMovieSelected
+                    selectedMovie: newSelectedMovie
                 });
             }
         },
@@ -26379,8 +26379,8 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                     className: "main-view"
                 }, selectedMovie ? /*#__PURE__*/ _react["default"].createElement(_movieView.MovieView, {
                     movie: selectedMovie,
-                    onBackClick: function onBackClick(newMovieSelected) {
-                        _this2.setSelectedMovie(newMovieSelected);
+                    onBackClick: function onBackClick(newSelectedMovie) {
+                        _this2.setSelectedMovie(newSelectedMovie);
                     }
                 }) : movies.map(function(movie1) {
                     return /*#__PURE__*/ _react["default"].createElement(_movieCard.MovieCard, {
@@ -26792,7 +26792,7 @@ var MovieView = /*#__PURE__*/ function(_React$Component) {
                 }, /*#__PURE__*/ _react["default"].createElement("span", {
                     className: "label"
                 }, "Description: "), /*#__PURE__*/ _react["default"].createElement("span", {
-                    className: "label"
+                    className: "value"
                 }, movie.Description, " ")), /*#__PURE__*/ _react["default"].createElement("button", {
                     onClick: function onClick() {
                         onBackClick(null);

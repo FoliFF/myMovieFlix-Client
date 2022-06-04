@@ -16,9 +16,9 @@ export class MainView extends React.Component {
         }
     }
 
-    setSelectedMovie(newMovieSelected) {
+    setSelectedMovie(newSelectedMovie) {
         this.setState({
-            selectedMovie: newMovieSelected
+            selectedMovie: newSelectedMovie
         });
     }
 
@@ -33,8 +33,10 @@ export class MainView extends React.Component {
         return (
             <div className="main-view">
                 {selectedMovie
-                    ? <MovieView movie={selectedMovie} onBackClick={newMovieSelected => { this.setSelectedMovie(newMovieSelected); }} />
-                    : movies.map(movie => <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie) }} />)
+                    ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+                    : movies.map(movie => (
+                        <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie) }} />
+                    ))
                 }
             </div>
         );
