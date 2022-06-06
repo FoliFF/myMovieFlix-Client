@@ -26237,8 +26237,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports["default"] = exports.MainView = void 0;
-var _axios = _interopRequireDefault(require("axios"));
 var _react = _interopRequireDefault(require("react"));
+var _axios = _interopRequireDefault(require("axios"));
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
 function _interopRequireDefault(obj) {
@@ -26332,28 +26332,12 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
         _classCallCheck(this, MainView1);
         _this = _super.call(this);
         _this.state = {
-            //movies: [],
-            movies: [
-                {
-                    _id: 1,
-                    Title: "Inception",
-                    Description: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
-                    ImagePath: "https://www.imdb.com/title/tt1375666/mediaviewer/rm3426651392/"
-                },
-                {
-                    _id: 2,
-                    Title: "The Lord of the Rings: The Fellowship of the Ring",
-                    Description: "A meek Hobit takes a journey with his friends to destroy the one ring to rule them all.",
-                    ImagePath: "https://www.imdb.com/title/tt0120737/mediaviewer/rm3592958976/"
-                },
-                {
-                    _id: 3,
-                    Title: "Your Name",
-                    Description: "Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?",
-                    ImagePath: "https://www.imdb.com/title/tt0347149/mediaviewer/rm2426685696/"
-                }
-            ],
-            selectedMovie: null
+            movies: [],
+            /*movies: [
+          { _id: 1, Title: 'Inception', Description: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.', ImagePath: 'https://www.imdb.com/title/tt1375666/mediaviewer/rm3426651392/' },
+          { _id: 2, Title: 'The Lord of the Rings: The Fellowship of the Ring', Description: 'A meek Hobit takes a journey with his friends to destroy the one ring to rule them all.', ImagePath: 'https://www.imdb.com/title/tt0120737/mediaviewer/rm3592958976/' },
+          { _id: 3, Title: 'Your Name', Description: 'Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?', ImagePath: 'https://www.imdb.com/title/tt0347149/mediaviewer/rm2426685696/' }
+      ],*/ selectedMovie: null
         };
         return _this;
     }
@@ -26786,6 +26770,24 @@ var MovieView = /*#__PURE__*/ function(_React$Component) {
         return _super.apply(this, arguments);
     }
     _createClass(MovieView1, [
+        {
+            key: "keypressCallback",
+            value: function keypressCallback(event) {
+                console.log(event.key);
+            }
+        },
+        {
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                document.addEventListener("keypress", this.keypressCallback);
+            }
+        },
+        {
+            key: "componentWillUnmount",
+            value: function componentWillUnmount() {
+                document.removeEventListener("keypress", this.keypressCallback);
+            }
+        },
         {
             key: "render",
             value: function render() {
