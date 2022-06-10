@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { LoginView } from '../login-view/login-view';
+//import { LoginView } from '../../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -34,6 +34,35 @@ export class MainView extends React.Component {
     }
 
 
+    /**
+     * https://movie-api-21197.herokuapp.com/login?Username=Alice1&Password=new2123
+     * 
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    const isReq = validate();
+    if (isReq) {
+      axios
+        .post('https://movie-api-21197.herokuapp.com/login', {
+          Username: username,
+          Password: password,
+        })
+        .then((response) => {
+          const data = response.data;
+          props.onLoggedIn(data);
+        })
+        .catch((e) => {
+          console.log('no such user');
+          alert(
+            'Wrong Username or Password. If you are new here, please register first.'
+          );
+        });
+    }
+  };
+     * 
+     * 
+     */
+
+
     /* When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie */
     setSelectedMovie(movie) {
         this.setState({
@@ -51,7 +80,7 @@ export class MainView extends React.Component {
         const { movies, selectedMovie, user } = this.state;
 
         /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-        if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+        //if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
 
         //Commented out these just incase I need to revert.

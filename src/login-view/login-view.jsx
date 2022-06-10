@@ -13,6 +13,32 @@ export function LoginView(props) {
         then call props.onLoggedIn(username) 
         props.onLoggedIn(username); 
     */
+
+    /* const handleSubmit = (e) => {
+        e.preventDefault();
+        const isReq = validate();
+        if (isReq) {
+          axios
+            .post('https://movie-api-21197.herokuapp.com/login', {
+              Username: username,
+              Password: password,
+            })
+            .then((response) => {
+              const data = response.data;
+              props.onLoggedIn(data);
+            })
+            .catch((e) => {
+              console.log('no such user');
+              alert(
+                'Wrong Username or Password. If you are new here, please register first.'
+              );
+            });
+        }
+      }; */
+
+
+
+
     return (
         <form>
             <label>
