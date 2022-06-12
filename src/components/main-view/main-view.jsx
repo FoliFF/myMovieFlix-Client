@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-//import { LoginView } from '../../login-view/login-view';
+import { LoginView } from '../../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -86,8 +86,8 @@ export class MainView extends React.Component {
         //Commented out these just incase I need to revert.
         //if (selectedMovie) return <MovieView movie={selectedMovie} />;
 
-        /*if (movies.length === 0)
-            return <div className='main-view'>The list of movies is empty!</div>*/
+        if (movies.length === 0)
+            return <div className='main-view'>The list of movies is empty!</div>
 
         // Before the movies have been loaded
         if (movies.length === 0)
