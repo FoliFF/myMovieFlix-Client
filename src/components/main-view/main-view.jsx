@@ -74,7 +74,6 @@ export class MainView extends React.Component {
     onLoggedIn(user) {
         this.setState({ user });
     }
-    //test
 
     render() {
 
