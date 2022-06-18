@@ -26416,9 +26416,12 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             key: "render",
             value: function render() {
                 var _this4 = this;
-                var _this$state = this.state, movies = _this$state.movies, selectedMovie = _this$state.selectedMovie, user = _this$state.user;
-                /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/ //if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-                //Commented out these just incase I need to revert.
+                var _this$state = this.state, movies = _this$state.movies, selectedMovie = _this$state.selectedMovie, user1 = _this$state.user;
+                /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/ if (!user1) return /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
+                    onLoggedIn: function onLoggedIn(user) {
+                        return _this4.onLoggedIn(user);
+                    }
+                }); //Commented out these just incase I need to revert.
                 //if (selectedMovie) return <MovieView movie={selectedMovie} />;
                 if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
                     className: "main-view"
