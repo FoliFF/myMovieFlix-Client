@@ -47,7 +47,8 @@ export function LoginView(props) {
             );
           });
       }
-    }; */
+    }; 
+  */
 
   return (
     <Form>

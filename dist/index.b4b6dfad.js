@@ -26421,8 +26421,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                     onLoggedIn: function onLoggedIn(user) {
                         return _this4.onLoggedIn(user);
                     }
-                }); //Commented out these just incase I need to revert.
-                //if (selectedMovie) return <MovieView movie={selectedMovie} />;
+                });
                 if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
                     className: "main-view"
                 }, "The list of movies is empty!"); // Before the movies have been loaded
@@ -32276,7 +32275,8 @@ function LoginView(props) {
             );
           });
       }
-    }; */ return /*#__PURE__*/ _react["default"].createElement(_Form["default"], null, /*#__PURE__*/ _react["default"].createElement(_Form["default"].Group, {
+    }; 
+  */ return /*#__PURE__*/ _react["default"].createElement(_Form["default"], null, /*#__PURE__*/ _react["default"].createElement(_Form["default"].Group, {
         controlId: "fromUsername"
     }, /*#__PURE__*/ _react["default"].createElement(_Form["default"].Label, null, "Username"), /*#__PURE__*/ _react["default"].createElement(_Form["default"].Control, {
         type: "text",

@@ -73,37 +73,6 @@ export class MainView extends React.Component {
         });
     }
 
-
-
-    /**
-     * https://movie-api-21197.herokuapp.com/login?Username=Alice1&Password=new2123
-     * 
-    const handleSubmit = (e) => {
-    e.preventDefault();
-    const isReq = validate();
-    if (isReq) {
-      axios
-        .post('https://movie-api-21197.herokuapp.com/login', {
-          Username: username,
-          Password: password,
-        })
-        .then((response) => {
-          const data = response.data;
-          props.onLoggedIn(data);
-        })
-        .catch((e) => {
-          console.log('no such user');
-          alert(
-            'Wrong Username or Password. If you are new here, please register first.'
-          );
-        });
-    }
-  };
-     * 
-     * 
-     */
-
-
     /* When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie */
     setSelectedMovie(movie) {
         this.setState({
@@ -116,16 +85,18 @@ export class MainView extends React.Component {
         this.setState({ user });
     }
 
+    /*
+     * https://movie-api-21197.herokuapp.com/login
+     * Username=Alice1
+     * Password=new2123
+     */
+
     render() {
 
         const { movies, selectedMovie, user } = this.state;
 
         /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
         if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-
-
-        //Commented out these just incase I need to revert.
-        //if (selectedMovie) return <MovieView movie={selectedMovie} />;
 
         if (movies.length === 0)
             return <div className='main-view'>The list of movies is empty!</div>
