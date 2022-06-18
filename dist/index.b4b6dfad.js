@@ -26245,6 +26245,7 @@ var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
 var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
 var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
+require("./main-view.scss");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         "default": obj
@@ -26336,28 +26337,12 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
         _classCallCheck(this, MainView1);
         _this = _super.call(this); //Initial state is set to null.
         _this.state = {
-            //movies: [],
-            movies: [
-                {
-                    _id: 1,
-                    Title: "Inception",
-                    Description: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
-                    ImagePath: "https://www.imdb.com/title/tt1375666/mediaviewer/rm3426651392/"
-                },
-                {
-                    _id: 2,
-                    Title: "The Lord of the Rings: The Fellowship of the Ring",
-                    Description: "A meek Hobit takes a journey with his friends to destroy the one ring to rule them all.",
-                    ImagePath: "https://www.imdb.com/title/tt0120737/mediaviewer/rm3592958976/"
-                },
-                {
-                    _id: 3,
-                    Title: "Your Name",
-                    Description: "Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?",
-                    ImagePath: "https://www.imdb.com/title/tt0347149/mediaviewer/rm2426685696/"
-                }
-            ],
-            selectedMovie: null,
+            movies: [],
+            /*movies: [
+          { _id: 1, Title: 'Inception', Description: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.', ImagePath: 'https://www.imdb.com/title/tt1375666/mediaviewer/rm3426651392/' },
+          { _id: 2, Title: 'The Lord of the Rings: The Fellowship of the Ring', Description: 'A meek Hobit takes a journey with his friends to destroy the one ring to rule them all.', ImagePath: 'https://www.imdb.com/title/tt0120737/mediaviewer/rm3592958976/' },
+          { _id: 3, Title: 'Your Name', Description: 'Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?', ImagePath: 'https://www.imdb.com/title/tt0347149/mediaviewer/rm2426685696/' }
+      ],*/ selectedMovie: null,
             user: null
         };
         return _this;
@@ -26377,6 +26362,49 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             }
         },
         {
+            key: "getMovies",
+            value: function getMovies(token) {
+                var _this3 = this;
+                _axios["default"].get("https://movie-api-21197.herokuapp.com/", {
+                    headers: {
+                        Authorization: "Bearer ".concat(token)
+                    }
+                }).then(function(response) {
+                    _this3.setState({
+                        movies: response.data
+                    });
+                })["catch"](function(error) {
+                    console.log(error);
+                });
+            }
+        },
+        {
+            key: "onLoggedIn",
+            value: /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/ function onLoggedIn(user) {
+                this.setState({
+                    user: user
+                });
+            }
+        },
+        {
+            key: "onLoggedOut",
+            value: function onLoggedOut() {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                this.setState({
+                    user: null
+                });
+            }
+        },
+        {
+            key: "onRegister",
+            value: function onRegister() {
+                this.setState({
+                    isRegistered: false
+                });
+            }
+        },
+        {
             key: "setSelectedMovie",
             value: function setSelectedMovie(movie) {
                 this.setState({
@@ -26385,17 +26413,9 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             }
         },
         {
-            key: "onLoggedIn",
-            value: function onLoggedIn(user) {
-                this.setState({
-                    user: user
-                });
-            }
-        },
-        {
             key: "render",
             value: function render() {
-                var _this3 = this;
+                var _this4 = this;
                 var _this$state = this.state, movies = _this$state.movies, selectedMovie = _this$state.selectedMovie, user = _this$state.user;
                 /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/ //if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
                 //Commented out these just incase I need to revert.
@@ -26413,7 +26433,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 }, /*#__PURE__*/ _react["default"].createElement(_movieView.MovieView, {
                     movie: selectedMovie,
                     onBackClick: function onBackClick(newSelectedMovie) {
-                        _this3.setSelectedMovie(newSelectedMovie);
+                        _this4.setSelectedMovie(newSelectedMovie);
                     }
                 })) : movies.map(function(movie) {
                     return /*#__PURE__*/ _react["default"].createElement(_Col["default"], {
@@ -26422,7 +26442,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                         key: movie._id,
                         movie: movie,
                         onMovieClick: function onMovieClick(newSelectedMovie) {
-                            _this3.setSelectedMovie(newSelectedMovie);
+                            _this4.setSelectedMovie(newSelectedMovie);
                         }
                     }));
                 }));
@@ -26440,7 +26460,7 @@ exports["default"] = _default;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","../../login-view/login-view":"ajf4z","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6"}],"bwuIu":[function(require,module,exports) {
+},{"react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","../../login-view/login-view":"ajf4z","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","./main-view.scss":"eBaMl"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -26464,6 +26484,7 @@ var _react = _interopRequireDefault(require("react"));
 var _propTypes = _interopRequireDefault(require("prop-types"));
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
+require("./movie-card.scss");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         "default": obj
@@ -26589,7 +26610,7 @@ MovieCard.PropTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2","react-bootstrap/Button":"aPzUt","react-bootstrap/Card":"lAynp"}],"km3Ru":[function(require,module,exports) {
+},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2","react-bootstrap/Button":"aPzUt","react-bootstrap/Card":"lAynp","./movie-card.scss":"d6HH4"}],"km3Ru":[function(require,module,exports) {
 "use strict";
 var Refresh = require("react-refresh/runtime");
 function debounce(func, delay) {
@@ -28723,7 +28744,7 @@ const context = /*#__PURE__*/ _react.createContext(null);
 context.displayName = "CardHeaderContext";
 exports.default = context;
 
-},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ggaUx":[function(require,module,exports) {
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d6HH4":[function() {},{}],"ggaUx":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -28744,6 +28765,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.MovieView = void 0;
 var _react = _interopRequireDefault(require("react"));
+var _propTypes = require("prop-types");
+require("./movie-view.scss");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         "default": obj
@@ -28886,13 +28909,20 @@ var MovieView = /*#__PURE__*/ function(_React$Component) {
     return MovieView1;
 }(_react["default"].Component);
 exports.MovieView = MovieView;
+MovieView.PropTypes = {
+    movie: _propTypes.PropTypes.shape({
+        Title: _propTypes.PropTypes.string.isRequired,
+        Description: _propTypes.PropTypes.string.isRequired,
+        ImagePath: _propTypes.PropTypes.string.isRequired
+    })
+};
 
   $parcel$ReactRefreshHelpers$e9f6.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jo6P5":[function(require,module,exports) {
+},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2","./movie-view.scss":"jnlR5"}],"jnlR5":[function() {},{}],"jo6P5":[function(require,module,exports) {
 module.exports = require("./lib/axios");
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -32125,6 +32155,8 @@ exports.LoginView = LoginView;
 var _react = _interopRequireWildcard(require("react"));
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
+var _axios = _interopRequireDefault(require("axios"));
+require("./login-view.scss");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         "default": obj
@@ -32207,8 +32239,18 @@ function LoginView(props) {
     var _useState3 = (0, _react.useState)(""), _useState4 = _slicedToArray(_useState3, 2), password = _useState4[0], setPassword = _useState4[1];
     var handleSubmit = function handleSubmit(e) {
         e.preventDefault();
-        console.log(username, password); //Send a request to the server for authentication then call props.onLoggedIn(username) 
-        props.onLoggedIn(username);
+        _axios["default"].post("https://movie-api-21197.herokuapp.com/login", {
+            Username: username,
+            Password: password
+        }).then(function(response) {
+            var data = response.data;
+            props.onLoggedIn(data);
+        })["catch"](function(e) {
+            console.log("No such user");
+            alert("Wrong Username or Password. Please register if you are here for the first time.");
+        }); //console.log(username, password);
+    //Send a request to the server for authentication then call props.onLoggedIn(username) 
+    //props.onLoggedIn(username);
     };
     /* THIS IS FROM ARON SUNDAY AND ME TRYING TO UNDERSTAND THE CODE 
     const handleSubmit = (e) => {
@@ -32271,7 +32313,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt"}],"iBZ80":[function(require,module,exports) {
+},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","axios":"jo6P5","./login-view.scss":"6X474"}],"iBZ80":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -32847,7 +32889,7 @@ const FloatingLabel = /*#__PURE__*/ _react.forwardRef(({ bsPrefix , className , 
 FloatingLabel.displayName = "FloatingLabel";
 exports.default = FloatingLabel;
 
-},{"classnames":"jocGM","react":"21dqq","./FormGroup":"1qBHH","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cMC39":[function(require,module,exports) {
+},{"classnames":"jocGM","react":"21dqq","./FormGroup":"1qBHH","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6X474":[function() {},{}],"cMC39":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -32879,7 +32921,7 @@ as: Component = "div" , ...props }, ref)=>{
 Row.displayName = "Row";
 exports.default = Row;
 
-},{"classnames":"jocGM","react":"21dqq","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lJZlQ":[function() {},{}],"hEdsw":[function(require,module,exports) {
+},{"classnames":"jocGM","react":"21dqq","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eBaMl":[function() {},{}],"lJZlQ":[function() {},{}],"hEdsw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");

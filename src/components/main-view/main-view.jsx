@@ -6,6 +6,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import "./main-view.scss";
 
 export class MainView extends React.Component {
 
@@ -13,12 +14,12 @@ export class MainView extends React.Component {
         super();
         //Initial state is set to null.
         this.state = {
-            //movies: [],
-            movies: [
+            movies: [],
+            /*movies: [
                 { _id: 1, Title: 'Inception', Description: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.', ImagePath: 'https://www.imdb.com/title/tt1375666/mediaviewer/rm3426651392/' },
                 { _id: 2, Title: 'The Lord of the Rings: The Fellowship of the Ring', Description: 'A meek Hobit takes a journey with his friends to destroy the one ring to rule them all.', ImagePath: 'https://www.imdb.com/title/tt0120737/mediaviewer/rm3592958976/' },
                 { _id: 3, Title: 'Your Name', Description: 'Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?', ImagePath: 'https://www.imdb.com/title/tt0347149/mediaviewer/rm2426685696/' }
-            ],
+            ],*/
             selectedMovie: null,
             user: null
         }
@@ -34,6 +35,44 @@ export class MainView extends React.Component {
                 console.log(error);
             });
     }
+
+    getMovies(token) {
+        axios.get('https://movie-api-21197.herokuapp.com/', {
+            headers: { Authorization: `Bearer ${token}` }
+        }).then(response => {
+            this.setState({
+                movies: response.data
+            });
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+
+    onLoggedIn(authData) {
+        console.log(authData);
+        this.setState({
+            user: authData.user.Username
+        });
+
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.Username);
+        this.getMovies(authData.token);
+    }
+
+    onLoggedOut() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.setState({
+            user: null
+        });
+    }
+
+    onRegister() {
+        this.setState({
+            isRegistered: false
+        });
+    }
+
 
 
     /**

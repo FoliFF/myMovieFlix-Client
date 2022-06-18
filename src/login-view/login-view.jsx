@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+import "./login-view.scss";
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -8,9 +10,19 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
+    axios.post('https://movie-api-21197.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    }).then(response => {
+      const data = response.data;
+      props.onLoggedIn(data);
+    }).catch(e => {
+      console.log('No such user');
+      alert('Wrong Username or Password. Please register if you are here for the first time.')
+    });
+    //console.log(username, password);
     //Send a request to the server for authentication then call props.onLoggedIn(username) 
-    props.onLoggedIn(username);
+    //props.onLoggedIn(username);
   };
 
   /* THIS IS FROM ARON SUNDAY AND ME TRYING TO UNDERSTAND THE CODE 
