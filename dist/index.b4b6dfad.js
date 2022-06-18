@@ -26421,8 +26421,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                     onLoggedIn: function onLoggedIn(user) {
                         return _this4.onLoggedIn(user);
                     }
-                }); //Commented out these just incase I need to revert.
-                //if (selectedMovie) return <MovieView movie={selectedMovie} />;
+                });
                 if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
                     className: "main-view"
                 }, "The list of movies is empty!"); // Before the movies have been loaded
@@ -26583,8 +26582,12 @@ var MovieCard = /*#__PURE__*/ function(_React$Component) {
             key: "render",
             value: function render() {
                 var _this$props = this.props, movie = _this$props.movie, onMovieClick = _this$props.onMovieClick;
-                return(/*#__PURE__*/ //<div className="movie-card" onClick={() => onMovieClick(movie)} > {movie.Title} </div>);
-                _react["default"].createElement(_Card["default"], null, /*#__PURE__*/ _react["default"].createElement(_Card["default"].Img, {
+                return /*#__PURE__*/ _react["default"].createElement(_Card["default"], {
+                    style: {
+                        width: "18rem",
+                        backgroundColor: "grey"
+                    }
+                }, /*#__PURE__*/ _react["default"].createElement(_Card["default"].Img, {
                     variant: "top",
                     src: movie.ImagePath
                 }), /*#__PURE__*/ _react["default"].createElement(_Card["default"].Body, null, /*#__PURE__*/ _react["default"].createElement(_Card["default"].Title, null, movie.Title), /*#__PURE__*/ _react["default"].createElement(_Card["default"].Text, null, movie.Description), /*#__PURE__*/ _react["default"].createElement(_Button["default"], {
@@ -26592,7 +26595,7 @@ var MovieCard = /*#__PURE__*/ function(_React$Component) {
                         return onMovieClick(movie);
                     },
                     variant: "link"
-                }, "Open"))));
+                }, "Open")));
             }
         }
     ]);
@@ -32159,7 +32162,6 @@ var _react = _interopRequireWildcard(require("react"));
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 var _axios = _interopRequireDefault(require("axios"));
-require("./login-view.scss");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         "default": obj
@@ -32317,7 +32319,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","axios":"jo6P5","./login-view.scss":"6X474"}],"iBZ80":[function(require,module,exports) {
+},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","axios":"jo6P5"}],"iBZ80":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -32893,7 +32895,7 @@ const FloatingLabel = /*#__PURE__*/ _react.forwardRef(({ bsPrefix , className , 
 FloatingLabel.displayName = "FloatingLabel";
 exports.default = FloatingLabel;
 
-},{"classnames":"jocGM","react":"21dqq","./FormGroup":"1qBHH","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6X474":[function() {},{}],"cMC39":[function(require,module,exports) {
+},{"classnames":"jocGM","react":"21dqq","./FormGroup":"1qBHH","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cMC39":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");

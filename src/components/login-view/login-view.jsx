@@ -4,6 +4,13 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import "./login-view.scss";
 
+/*
+ * Credentials I know works for the myMovieFlix-Client;
+ * https://movie-api-21197.herokuapp.com/login?Username=Alice1&Password=new2123
+ * Username=Alice1
+ * Password=new2123
+ */
+
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

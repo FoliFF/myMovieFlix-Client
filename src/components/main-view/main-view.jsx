@@ -98,10 +98,6 @@ export class MainView extends React.Component {
         /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
         if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
-
-        //Commented out these just incase I need to revert.
-        //if (selectedMovie) return <MovieView movie={selectedMovie} />;
-
         if (movies.length === 0)
             return <div className='main-view'>The list of movies is empty!</div>
 
