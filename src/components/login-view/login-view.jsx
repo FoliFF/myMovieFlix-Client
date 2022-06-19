@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 import axios from 'axios';
+import { RegistrationView } from '../register-view/register-view';
 import "./login-view.scss";
 
 /*
@@ -58,19 +59,29 @@ export function LoginView(props) {
   */
 
   return (
-    <Form>
-      <Form.Group controlId='fromUsername'>
-        <Form.Label>Username</Form.Label>
-        <Form.Control type='text' onChange={e => setUsername(e.target.value)} />
-      </Form.Group>
+    <Container>
+      <Row className='justify-content-md-center'>
+        <Col></Col>
+        <Col>
+          <Card style={{ marginTop: 100, marginBotton: 50, width: 30, backgroundColor: 'red' }}>
+            <Form className='login-boder'>
+              <Form.Group controlId='fromUsername'>
+                <Form.Label>Username</Form.Label>
+                <Form.Control type='text' onChange={e => setUsername(e.target.value)} />
+              </Form.Group>
 
-      <Form.Group controlId='fromPassword'>
-        <Form.Label>Password</Form.Label>
-        <Form.Control type='Password' onChange={e => setPassword(e.target.value)} />
-      </Form.Group>
+              <Form.Group controlId='fromPassword'>
+                <Form.Label>Password</Form.Label>
+                <Form.Control type='Password' onChange={e => setPassword(e.target.value)} />
+              </Form.Group>
 
-      <Button variant='primary' type='submit' onClick={handleSubmit}>Submit</Button>
-    </Form>
+              <Button variant='primary' type='submit' onClick={handleSubmit}>Submit</Button>
+            </Form>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+
 
     /* Code for task 3.4
     <form>
