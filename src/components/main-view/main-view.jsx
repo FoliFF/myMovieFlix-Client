@@ -1,11 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 
-import { LoginView } from '../../login-view/login-view';
+import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { RegistrationView } from '../register-view/register-view';
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
 import "./main-view.scss";
 
 export class MainView extends React.Component {
@@ -21,12 +26,22 @@ export class MainView extends React.Component {
                 { _id: 3, Title: 'Your Name', Description: 'Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?', ImagePath: 'https://www.imdb.com/title/tt0347149/mediaviewer/rm2426685696/' }
             ],*/
             selectedMovie: null,
-            user: null
+            user: null,
+            visable: false,
+            isRegistered: true
         }
     }
 
     componentDidMount() {
-        axios.get('https://flix-db-823.herokuapp.com/movies')
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem('user')
+            });
+            this.getMovies(accessToken);
+        }
+        /*
+        axios.get('https://movie-api-21197.herokuapp.com/movies')
             .then(response => {
                 this.setState({
                     movies: response.data
@@ -34,15 +49,14 @@ export class MainView extends React.Component {
             }).catch(error => {
                 console.log(error);
             });
+        */
     }
 
     getMovies(token) {
-        axios.get('https://movie-api-21197.herokuapp.com/', {
+        axios.get('https://movie-api-21197.herokuapp.com/movies', {
             headers: { Authorization: `Bearer ${token}` }
         }).then(response => {
-            this.setState({
-                movies: response.data
-            });
+            this.props.setMovies(response.data);
         }).catch(function (error) {
             console.log(error);
         });
@@ -81,9 +95,9 @@ export class MainView extends React.Component {
     }
 
     /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
-    onLoggedIn(user) {
+    /*onLoggedIn(user) {
         this.setState({ user });
-    }
+    }*/
 
     /*
      * https://movie-api-21197.herokuapp.com/login?Username=Alice1&Password=new2123
@@ -106,21 +120,36 @@ export class MainView extends React.Component {
             return <div className='main-view' />;
 
         return (
-            <Row className="main-view justify-content-md-center">
-                {/*If the state of `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/}
-                {selectedMovie
-                    ? (
-                        <Col md={8}>
-                            <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+            <Router>
+                <Navbar user={user} />
+                <Row className="main-view justify-content-md-center">
+                    <Route exact path="/" render={() => {
+                        if (!user) return <Col>
+                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                         </Col>
-                    )
-                    : movies.map(movie => (
-                        <Col md={3}>
-                            <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
-                        </Col>
-                    ))
-                }
-            </Row>
+                        if (movies.length === 0) return <div className='main-view' />;
+                        return <Col><RegistrationView /></Col>
+                    }} />
+                    <Route path='/register' render={() => {
+                        if (user) return <Redirect to="/" />
+                        return <Col><RegistrationView /></Col>
+                    }} />
+
+                    {/*If the state of `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/}
+                    {selectedMovie
+                        ? (
+                            <Col md={8}>
+                                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+                            </Col>
+                        )
+                        : movies.map(movie => (
+                            <Col md={3}>
+                                <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
+                            </Col>
+                        ))
+                    }
+                </Row>
+            </Router>
         );
     }
 }
