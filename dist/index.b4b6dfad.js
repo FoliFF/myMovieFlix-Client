@@ -26384,6 +26384,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                         Authorization: "Bearer ".concat(token)
                     }
                 }).then(function(response) {
+                    console.log("response", data);
                     _this2.props.setMovies(response.data);
                 })["catch"](function(error) {
                     console.log(error);
@@ -30630,6 +30631,7 @@ var MovieView = /*#__PURE__*/ function(_React$Component) {
             key: "render",
             value: function render() {
                 var _this$props = this.props, movie = _this$props.movie, onBackClick = _this$props.onBackClick;
+                console.log("movie", movie);
                 return /*#__PURE__*/ _react["default"].createElement("div", {
                     className: "movie-view"
                 }, /*#__PURE__*/ _react["default"].createElement("div", {
