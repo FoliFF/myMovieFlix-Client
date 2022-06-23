@@ -6,7 +6,6 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { RegistrationView } from '../register-view/register-view';
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Row, Col, Navbar, Nav } from 'react-bootstrap';
 
 import "./main-view.scss";
@@ -21,7 +20,7 @@ export class MainView extends React.Component {
             selectedMovie: null,
             user: null,
             visable: false,
-            isRegistered: true
+            isRegistered: null
         }
     }
 
@@ -46,12 +45,17 @@ export class MainView extends React.Component {
         });
     }
 
+    /*
+     * https://movie-api-21197.herokuapp.com/login?Username=Alice1&Password=new2123
+     * Username=Alice1
+     * Password=new2123
+     */
+    /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
     onLoggedIn(authData) {
         console.log(authData);
         this.setState({
             user: authData.user.Username
         });
-
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
@@ -65,9 +69,9 @@ export class MainView extends React.Component {
         });
     }
 
-    onRegister() {
+    onRegisttration(isRegistered) {
         this.setState({
-            isRegistered: false
+            isRegistered
         });
     }
 
@@ -78,24 +82,13 @@ export class MainView extends React.Component {
         });
     }
 
-    /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
-    /*onLoggedIn(user) {
-        this.setState({ user });
-    }*/
-
-    /*
-     * https://movie-api-21197.herokuapp.com/login?Username=Alice1&Password=new2123
-     * Username=Alice1
-     * Password=new2123
-     */
-
     render() {
-        const { movies, selectedMovie, user } = this.state;
+        const { movies, selectedMovie, user, isRegistered } = this.state;
         if (!user)
             return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
-        if (!user)
+        if (!isRegistered)
             return (
-                <RegistrationView onRegistered={(user) => this.onLoggedIn(user)} />
+                <RegistrationView onRegistered={(register) => this.onRegisttration(register)} />
             );
         if (movies.length === 0) return <div className="main-view" />;
 
@@ -110,7 +103,7 @@ export class MainView extends React.Component {
                     sticky="top"
                 >
                     <Navbar.Brand id="appName" href="#home">
-                        techFlix
+                        myMovieFlix
                     </Navbar.Brand>
                     <Navbar.Toggle className="toggle" />
                     <Navbar.Collapse className="justify-content-end toggle">

@@ -44,7 +44,9 @@ export function RegistrationView(porps) {
 
     const handleRegister = (e) => {
         e.preventDefault();
+        console.log(username, password, email, birthday);
         const isReq = validate();
+        //porps.onRegistration(username);
         if (isReq) {
             axios.post('https://movie-api-21197.herokuapp.com/users', {
                 Username: username,
@@ -115,7 +117,7 @@ export function RegistrationView(porps) {
                                         value={birthday}
                                     />
                                 </Form.Group>
-                                <Button variant="primary" type='submit' onClick={handleRegister}>Submit</Button>
+                                <Button variant="primary" type='submit' onClick={handleRegister}>Register</Button>
                             </Form>
                         </Card>
                     </CardGroup>
@@ -124,3 +126,7 @@ export function RegistrationView(porps) {
         </Container>
     )
 }
+
+RegistrationView.propTypes = {
+    onRegistration: PropTypes.func.isRequired
+};

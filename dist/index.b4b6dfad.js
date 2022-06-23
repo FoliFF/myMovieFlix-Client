@@ -26244,7 +26244,6 @@ var _loginView = require("../login-view/login-view");
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
 var _registerView = require("../register-view/register-view");
-var _reactRouterDom = require("react-router-dom");
 var _reactBootstrap = require("react-bootstrap");
 require("./main-view.scss");
 function _interopRequireDefault(obj) {
@@ -26342,7 +26341,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             selectedMovie: null,
             user: null,
             visable: false,
-            isRegistered: true
+            isRegistered: null
         };
         return _this;
     }
@@ -26400,10 +26399,10 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             }
         },
         {
-            key: "onRegister",
-            value: function onRegister() {
+            key: "onRegisttration",
+            value: function onRegisttration(isRegistered) {
                 this.setState({
-                    isRegistered: false
+                    isRegistered: isRegistered
                 });
             }
         },
@@ -26419,15 +26418,15 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             key: "render",
             value: function render() {
                 var _this3 = this;
-                var _this$state = this.state, movies = _this$state.movies, selectedMovie = _this$state.selectedMovie, user1 = _this$state.user;
+                var _this$state = this.state, movies = _this$state.movies, selectedMovie = _this$state.selectedMovie, user1 = _this$state.user, isRegistered = _this$state.isRegistered;
                 if (!user1) return /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
                     onLoggedIn: function onLoggedIn(user) {
                         return _this3.onLoggedIn(user);
                     }
                 });
-                if (!user1) return /*#__PURE__*/ _react["default"].createElement(_registerView.RegistrationView, {
-                    onRegistered: function onRegistered(user) {
-                        return _this3.onLoggedIn(user);
+                if (!isRegistered) return /*#__PURE__*/ _react["default"].createElement(_registerView.RegistrationView, {
+                    onRegistered: function onRegistered(register) {
+                        return _this3.onRegisttration(register);
                     }
                 });
                 if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
@@ -26445,7 +26444,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Brand, {
                     id: "appName",
                     href: "#home"
-                }, "techFlix"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
+                }, "myMovieFlix"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
                     className: "toggle"
                 }), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Collapse, {
                     className: "justify-content-end toggle"
@@ -26490,7 +26489,7 @@ exports.MainView = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../register-view/register-view":"6jAr6","react-router-dom":"fdOAw","react-bootstrap":"3AD9A","./main-view.scss":"eBaMl"}],"km3Ru":[function(require,module,exports) {
+},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../register-view/register-view":"6jAr6","react-bootstrap":"3AD9A","./main-view.scss":"eBaMl"}],"km3Ru":[function(require,module,exports) {
 "use strict";
 var Refresh = require("react-refresh/runtime");
 function debounce(func, delay) {
@@ -29844,6 +29843,7 @@ var _react = _interopRequireWildcard(require("react"));
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
 var _reactBootstrap = require("react-bootstrap");
 var _axios = _interopRequireDefault(require("axios"));
+var _propTypes = _interopRequireDefault(require("prop-types"));
 var _registerView = require("../register-view/register-view");
 require("./login-view.scss");
 function _interopRequireDefault(obj) {
@@ -30011,6 +30011,13 @@ function _arrayWithHoles(arr) {
   </form> */ ;
 }
 _c = LoginView;
+LoginView.PropTypes = {
+    user: _propTypes["default"].shape({
+        username: _propTypes["default"].string.isRequired,
+        password: _propTypes["default"].string.isRequired
+    }),
+    onLoggedIn: _propTypes["default"].func.isRequired
+};
 var _c;
 $RefreshReg$(_c, "LoginView");
 
@@ -30019,7 +30026,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-bootstrap/Form":"iBZ80","react-bootstrap":"3AD9A","axios":"jo6P5","../register-view/register-view":"6jAr6","./login-view.scss":"e57ax","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iBZ80":[function(require,module,exports) {
+},{"react":"21dqq","react-bootstrap/Form":"iBZ80","react-bootstrap":"3AD9A","axios":"jo6P5","../register-view/register-view":"6jAr6","./login-view.scss":"e57ax","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2"}],"iBZ80":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -43422,7 +43429,8 @@ function RegistrationView(porps) {
     };
     var handleRegister = function handleRegister(e) {
         e.preventDefault();
-        var isReq = validate();
+        console.log(username, password, email, birthday);
+        var isReq = validate(); //porps.onRegistration(username);
         if (isReq) _axios["default"].post("https://movie-api-21197.herokuapp.com/users", {
             Username: username,
             Password: password,
@@ -43478,9 +43486,12 @@ function RegistrationView(porps) {
         variant: "primary",
         type: "submit",
         onClick: handleRegister
-    }, "Submit")))))));
+    }, "Register")))))));
 }
 _c = RegistrationView;
+RegistrationView.propTypes = {
+    onRegistration: _propTypes["default"].func.isRequired
+};
 var _c;
 $RefreshReg$(_c, "RegistrationView");
 
@@ -43636,6 +43647,7 @@ exports.MovieCard = MovieCard;
 MovieCard.propTypes = {
     movie: _propTypes["default"].shape({
         Title: _propTypes["default"].string.isRequired,
+        Description: _propTypes["default"].string.isRequired,
         ImagePath: _propTypes["default"].string.isRequired
     }).isRequired,
     onMovieClick: _propTypes["default"].func.isRequired
