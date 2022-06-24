@@ -26243,7 +26243,6 @@ var _axios = _interopRequireDefault(require("axios"));
 var _loginView = require("../login-view/login-view");
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
-var _registerView = require("../register-view/register-view");
 var _reactBootstrap = require("react-bootstrap");
 require("./main-view.scss");
 function _interopRequireDefault(obj) {
@@ -26345,26 +26344,48 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
         };
         return _this;
     }
-    _createClass(MainView1, [
+    /*
+   * https://movie-api-21197.herokuapp.com/login?Username=Alice1&Password=new2123
+   * Username=Alice1
+   * Password=new2123
+   */ _createClass(MainView1, [
         {
             key: "componentDidMount",
             value: function componentDidMount() {
+                /*axios.get('https://movie-api-21197.herokuapp.com/movies')
+          .then(response => {
+              this.setState({
+                  movies: response.data
+              });
+          }).catch(error => {
+              console.log(error);
+          });
+      */ var accessToken = localStorage.getItem("token");
+                if (accessToken !== null) {
+                    this.setState({
+                        user: localStorage.getItem("user")
+                    });
+                    this.getMovies(accessToken);
+                }
+            }
+        },
+        {
+            key: "getMovies",
+            value: function getMovies(token) {
                 var _this2 = this;
-                _axios["default"].get("https://movie-api-21197.herokuapp.com/movies").then(function(response) {
+                _axios["default"].get("https://movie-api-21197.herokuapp.com/movies", {
+                    headers: {
+                        Authorization: "Bearer ".concat(token)
+                    }
+                }).then(function(response) {
+                    console.log("response", response.data);
                     _this2.setState({
                         movies: response.data
                     });
                 })["catch"](function(error) {
                     console.log(error);
                 });
-            /*
-      let accessToken = localStorage.getItem('token');
-      if (accessToken !== null) {
-          this.setState({
-              user: localStorage.getItem('user')
-          });
-          this.getMovies(accessToken);
-      }*/ }
+            }
         },
         {
             key: "onLoggedIn",
@@ -26465,7 +26486,7 @@ exports.MainView = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../register-view/register-view":"6jAr6","react-bootstrap":"3AD9A","./main-view.scss":"eBaMl"}],"km3Ru":[function(require,module,exports) {
+},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","react-bootstrap":"3AD9A","./main-view.scss":"eBaMl"}],"km3Ru":[function(require,module,exports) {
 "use strict";
 var Refresh = require("react-refresh/runtime");
 function debounce(func, delay) {
@@ -45289,238 +45310,6 @@ function _renderMatches(matches, parentMatches) {
     return _renderMatches(matches);
 }
 
-},{"history":"iE5Zp","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jnlR5":[function() {},{}],"6jAr6":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$f521 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$f521.prelude(module);
-
-try {
-"use strict";
-function _typeof(obj1) {
-    "@babel/helpers - typeof";
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj) {
-        return typeof obj;
-    } : function(obj) {
-        return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    }, _typeof(obj1);
-}
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.RegistrationView = RegistrationView;
-var _react = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _reactBootstrap = require("react-bootstrap");
-require("./register-view.scss");
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-        "default": obj
-    };
-}
-function _getRequireWildcardCache(nodeInterop1) {
-    if (typeof WeakMap !== "function") return null;
-    var cacheBabelInterop = new WeakMap();
-    var cacheNodeInterop = new WeakMap();
-    return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) {
-        return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
-    })(nodeInterop1);
-}
-function _interopRequireWildcard(obj, nodeInterop) {
-    if (!nodeInterop && obj && obj.__esModule) return obj;
-    if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") return {
-        "default": obj
-    };
-    var cache = _getRequireWildcardCache(nodeInterop);
-    if (cache && cache.has(obj)) return cache.get(obj);
-    var newObj = {};
-    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-    for(var key in obj)if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
-        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-        if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
-        else newObj[key] = obj[key];
-    }
-    newObj["default"] = obj;
-    if (cache) cache.set(obj, newObj);
-    return newObj;
-}
-function _slicedToArray(arr, i) {
-    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
-}
-function _nonIterableRest() {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-function _unsupportedIterableToArray(o, minLen) {
-    if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(o);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-function _arrayLikeToArray(arr, len) {
-    if (len == null || len > arr.length) len = arr.length;
-    for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
-    return arr2;
-}
-function _iterableToArrayLimit(arr, i) {
-    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
-    if (_i == null) return;
-    var _arr = [];
-    var _n = true;
-    var _d = false;
-    var _s, _e;
-    try {
-        for(_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true){
-            _arr.push(_s.value);
-            if (i && _arr.length === i) break;
-        }
-    } catch (err) {
-        _d = true;
-        _e = err;
-    } finally{
-        try {
-            if (!_n && _i["return"] != null) _i["return"]();
-        } finally{
-            if (_d) throw _e;
-        }
-    }
-    return _arr;
-}
-function _arrayWithHoles(arr) {
-    if (Array.isArray(arr)) return arr;
-}
-//import axios from 'axios';
-function RegistrationView(porps) {
-    var _useState = (0, _react.useState)(""), _useState2 = _slicedToArray(_useState, 2), username = _useState2[0], setUsername = _useState2[1];
-    var _useState3 = (0, _react.useState)(""), _useState4 = _slicedToArray(_useState3, 2), password = _useState4[0], setPassword = _useState4[1];
-    var _useState5 = (0, _react.useState)(""), _useState6 = _slicedToArray(_useState5, 2), email = _useState6[0], setEmail = _useState6[1];
-    var _useState7 = (0, _react.useState)(""), _useState8 = _slicedToArray(_useState7, 2), birthday = _useState8[0], setBirthday = _useState8[1]; //const [usernameError, setUsernameError] = useState('');
-    //const [passwordError, setPasswordError] = useState('');
-    //const [emailError, setEmailError] = useState('');
-    /*
-  const validate = () => {
-      let isReq = true;
-      if (!username) {
-          setUsernameError("Username is required");
-          isReq = false;
-      } else if (username.length < 5) {
-          setUsernameError("Username must be 5 characters long");
-          isReq = false;
-      }
-        if (!password) {
-          setPasswordError("Password is required");
-          isReq = false;
-      } else if (username.length < 5) {
-          setPasswordError("Password must be 5 characters long");
-          isReq = false;
-      }
-        if (!email) {
-          setEmailError("Add Email");
-          isReq = false;
-      } else if (email.indexOf("@") === -1) {
-          setEmail("Email must be a valid email address");
-          isReq = false;
-      }
-        return isReq;
-  };
-  */ var handleRegister = function handleRegister(e) {
-        e.preventDefault();
-        console.log(username, password, email, birthday);
-        /* Send a request to the server for authentication
-       then call props on registerd user (username) */ //const isReq = validate();
-        porps.onRegistration(username);
-    /*
-    if (isReq) {
-        axios.post('https://movie-api-21197.herokuapp.com/users', {
-            Username: username,
-            Password: password,
-            Email: email,
-            Birthday: birthday
-        }).then(response => {
-            const data = response.data;
-            console.log(data);
-            alert("Successfully registreation. You can now precced to login.");
-            window.open('/', '_self');
-            // The Second argument '_self' is necessary so that the page will open inthe current tab.
-        }).catch((response) => {
-            console.error(response);
-            alert('ERROR user registering');
-        });
-    }
-    */ };
-    return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, {
-        fluid: true,
-        className: "registerContainer"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar, {
-        bg: "navColor",
-        variant: "dark",
-        expand: "lg"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, {
-        fluid: true
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Brand, {
-        href: "#home"
-    }, "myMovieFlix"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav, {
-        className: "me-auto"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
-        href: "#logout"
-    }, "Register")))), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
-        className: "registerCard"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Title, {
-        className: "text-center"
-    }, "Welcome to myMovieFlix!"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Subtitle, {
-        className: "mb-2 text-muted text-center"
-    }, "Please register"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "test",
-        value: username,
-        onChange: function onChange(e) {
-            return setUsername(e.target.value);
-        },
-        requried: true,
-        placeholder: "Enter Username"
-    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "password",
-        value: password,
-        onChange: function onChange(e) {
-            return setPassword(e.target.value);
-        },
-        requried: true,
-        minLength: "8",
-        placeholder: "Password"
-    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Email address: "), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "email",
-        value: email,
-        onChange: function onChange(e) {
-            return setEmail(e.target.value);
-        },
-        requried: true,
-        placeholder: "Email"
-    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Birthday: "), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "date",
-        placeholder: "dd-mm-yyyy",
-        onChange: function onChange(e) {
-            return setBirthday(e.target.value);
-        },
-        value: birthday
-    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
-        className: "registerButton",
-        variant: "secondary",
-        type: "submit",
-        onClick: handleRegister
-    }, "Register"))))))));
-}
-_c = RegistrationView;
-RegistrationView.propTypes = {
-    onRegistration: _propTypes["default"].func.isRequired
-};
-var _c;
-$RefreshReg$(_c, "RegistrationView");
-
-  $parcel$ReactRefreshHelpers$f521.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","./register-view.scss":"8il1C","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"8il1C":[function() {},{}],"eBaMl":[function() {},{}],"lJZlQ":[function() {},{}]},["1xC6H","6fg2U","d8Dch"], "d8Dch", "parcelRequire4a38")
+},{"history":"iE5Zp","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jnlR5":[function() {},{}],"eBaMl":[function() {},{}],"lJZlQ":[function() {},{}]},["1xC6H","6fg2U","d8Dch"], "d8Dch", "parcelRequire4a38")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

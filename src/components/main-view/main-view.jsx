@@ -4,7 +4,6 @@ import axios from 'axios';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-import { RegistrationView } from '../register-view/register-view';
 
 import { Row, Col, Navbar, Nav, Container } from 'react-bootstrap';
 
@@ -24,8 +23,13 @@ export class MainView extends React.Component {
         }
     }
 
+    /*
+     * https://movie-api-21197.herokuapp.com/login?Username=Alice1&Password=new2123
+     * Username=Alice1
+     * Password=new2123
+     */
     componentDidMount() {
-        axios.get('https://movie-api-21197.herokuapp.com/movies')
+        /*axios.get('https://movie-api-21197.herokuapp.com/movies')
             .then(response => {
                 this.setState({
                     movies: response.data
@@ -33,17 +37,17 @@ export class MainView extends React.Component {
             }).catch(error => {
                 console.log(error);
             });
-        /*
+        */
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
             this.setState({
                 user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
-        }*/
+        }
     }
 
-    /*
+
     getMovies(token) {
         axios.get('https://movie-api-21197.herokuapp.com/movies', {
             headers: { Authorization: `Bearer ${token}` }
@@ -54,13 +58,7 @@ export class MainView extends React.Component {
             console.log(error);
         });
     }
-    */
 
-    /*
-     * https://movie-api-21197.herokuapp.com/login?Username=Alice1&Password=new2123
-     * Username=Alice1
-     * Password=new2123
-     */
     /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
     /*
     onLoggedIn(authData) {
