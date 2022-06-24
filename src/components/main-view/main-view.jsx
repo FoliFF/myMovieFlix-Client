@@ -6,7 +6,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { RegistrationView } from '../register-view/register-view';
 
-import { Row, Col, Navbar, Nav } from 'react-bootstrap';
+import { Row, Col, Navbar, Nav, Container } from 'react-bootstrap';
 
 import "./main-view.scss";
 
@@ -25,15 +25,25 @@ export class MainView extends React.Component {
     }
 
     componentDidMount() {
+        axios.get('https://movie-api-21197.herokuapp.com/movies')
+            .then(response => {
+                this.setState({
+                    movies: response.data
+                });
+            }).catch(error => {
+                console.log(error);
+            });
+        /*
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
             this.setState({
                 user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
-        }
+        }*/
     }
 
+    /*
     getMovies(token) {
         axios.get('https://movie-api-21197.herokuapp.com/movies', {
             headers: { Authorization: `Bearer ${token}` }
@@ -44,6 +54,7 @@ export class MainView extends React.Component {
             console.log(error);
         });
     }
+    */
 
     /*
      * https://movie-api-21197.herokuapp.com/login?Username=Alice1&Password=new2123
@@ -51,6 +62,7 @@ export class MainView extends React.Component {
      * Password=new2123
      */
     /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
+    /*
     onLoggedIn(authData) {
         console.log(authData);
         this.setState({
@@ -60,7 +72,9 @@ export class MainView extends React.Component {
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
     }
+    */
 
+    /*
     onLoggedOut() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
@@ -68,8 +82,16 @@ export class MainView extends React.Component {
             user: null
         });
     }
+    */
 
-    onRegisttration(isRegistered) {
+    onLoggedIn(user) {
+        this.setState({
+            user
+        });
+    }
+
+    //For a successfully registered user.
+    onRegistration(isRegistered) {
         this.setState({
             isRegistered
         });
@@ -84,64 +106,61 @@ export class MainView extends React.Component {
 
     render() {
         const { movies, selectedMovie, user, isRegistered } = this.state;
+        //if (!isRegistered)
+        //return (<RegistrationView onRegistration={(isRegistered) => this.onRegisttration(isRegistered)} />);
         if (!user)
-            return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
-        if (!isRegistered)
-            return (
-                <RegistrationView onRegistered={(register) => this.onRegisttration(register)} />
-            );
+            return (<LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />);
+
         if (movies.length === 0) return <div className="main-view" />;
 
         return (
             <div className="main-view justify-content-md-center">
-                <Navbar
-                    className="mb-5"
-                    id="techFlixNav"
-                    bg="dark"
-                    variant="dark"
-                    expand="lg"
-                    sticky="top"
-                >
-                    <Navbar.Brand id="appName" href="#home">
-                        myMovieFlix
-                    </Navbar.Brand>
-                    <Navbar.Toggle className="toggle" />
-                    <Navbar.Collapse className="justify-content-end toggle">
-                        <Nav.Link id="link" href="">
-                            MyPage
-                        </Nav.Link>
-                        <Nav.Link id="link" href="">
-                            Movies
-                        </Nav.Link>
-                        <Nav.Link id="link" href="">
-                            Logout
-                        </Nav.Link>
-                    </Navbar.Collapse>
+                <Navbar className="mb-5" id="techFlixNav" bg="navColor" variant="dark" expand="lg" sticky="top">
+                    <Container fluid>
+                        <Navbar.Brand id="appName" href="#home">myMovieFlix</Navbar.Brand>
+                        <Navbar.Toggle className="toggle" />
+                        <Navbar.Collapse className="justify-content-end toggle">
+                            <Nav.Link id="link" href="">
+                                MyPage
+                            </Nav.Link>
+                            <Nav.Link id="link" href="">
+                                Movies
+                            </Nav.Link>
+                            <Nav.Link id="link" href="">
+                                Logout
+                            </Nav.Link>
+                        </Navbar.Collapse>
+                    </Container>
                 </Navbar>
-                <Row className="main-view justify-content-md-center">
+                <Container>
                     {selectedMovie ? (
-                        <Col md={9}>
-                            <MovieView
-                                movie={selectedMovie}
-                                onBackClick={(newSelectedMovie) => {
-                                    this.setSelectedMovie(newSelectedMovie);
-                                }}
-                            />
-                        </Col>
-                    ) : (
-                        movies.map((movie) => (
-                            <Col md={4}>
-                                <MovieCard
-                                    key={movie._id}
-                                    movie={movie}
-                                    onMovieClick={(movie) => {
-                                        this.setSelectedMovie(movie);
+                        <Row className="justify-content-lg-center">
+                            <Col md={9}>
+                                <MovieView
+                                    movie={selectedMovie}
+                                    onBackClick={(newSelectedMovie) => {
+                                        this.setSelectedMovie(newSelectedMovie);
                                     }}
                                 />
                             </Col>
-                        ))
-                    )}
-                </Row>
+                        </Row>
+                    ) : (
+                        <Row className="justify-content-lg-center">
+                            {movies.map((movie) => (
+                                <Col md={4}>
+                                    <MovieCard
+                                        key={movie._id}
+                                        movie={movie}
+                                        onMovieClick={(movie) => {
+                                            this.setSelectedMovie(movie);
+                                        }}
+                                    />
+                                </Col>
+                            ))
+                            }
+                        </Row>)}
+
+                </Container>
             </div>
         );
     }

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import { Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
-import axios from 'axios';
+import { Button, Card, CardGroup, Container, Col, Row, Navbar, Nav } from 'react-bootstrap';
+//import axios from 'axios';
 import PropTypes from 'prop-types';
-import { RegistrationView } from '../register-view/register-view';
 import "./login-view.scss";
 
 /*
@@ -19,6 +18,8 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(username, password);
+    /*
     axios.post('https://movie-api-21197.herokuapp.com/login', {
       Username: username,
       Password: password
@@ -28,10 +29,9 @@ export function LoginView(props) {
     }).catch(e => {
       console.log('No such user');
       alert('Wrong Username or Password. Please register if you are here for the first time.')
-    });
-    //console.log(username, password);
+    });*/
     //Send a request to the server for authentication then call props.onLoggedIn(username) 
-    //props.onLoggedIn(username);
+    props.onLoggedIn(username);
   };
 
   /* THIS IS FROM ARON SUNDAY AND ME TRYING TO UNDERSTAND THE CODE 
@@ -60,42 +60,51 @@ export function LoginView(props) {
   */
 
   return (
-    <Container>
-      <Row className='justify-content-md-center'>
-        <Col></Col>
-        <Col>
-          <Card style={{ marginTop: 100, marginBotton: 50, width: 30, backgroundColor: 'red' }}>
-            <Form className='login-boder'>
-              <Form.Group controlId='fromUsername'>
-                <Form.Label>Username</Form.Label>
-                <Form.Control type='text' onChange={e => setUsername(e.target.value)} />
-              </Form.Group>
+    <Container fluid className='loginContainer'>
 
-              <Form.Group controlId='fromPassword'>
-                <Form.Label>Password</Form.Label>
-                <Form.Control type='Password' onChange={e => setPassword(e.target.value)} />
-              </Form.Group>
+      <Navbar bg='navColor' variant='dark' expand='lg'>
+        <Container fluid>
+          <Navbar.Brand href='#home'>myMovieFlix</Navbar.Brand>
+          <Nav className='me-auto'>
+            <Nav.Link href='#logout'>Login</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
 
-              <Button variant='primary' type='submit' onClick={handleSubmit}>Submit</Button>
-            </Form>
-          </Card>
-        </Col>
-      </Row>
+      <Card className='loginCard'>
+        <Card.Body>
+          <Card.Title className='text-center'>Welcome to myMovieFlix!</Card.Title>
+          <Card.Subtitle className='mb-2 text-muted text-center'>Please Login</Card.Subtitle>
+
+          <Form>
+            <Form.Group controlId='fromUsername'>
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                ype='text'
+                onChange={e => setUsername(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId='fromPassword'>
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                className='mb-3'
+                type='Password'
+                onChange={e => setPassword(e.target.value)}
+              />
+            </Form.Group>
+
+            <Button
+              className='loginBotton'
+              variant='secondary'
+              type='submit'
+              onClick={handleSubmit}>Login
+            </Button>
+          </Form>
+        </Card.Body>
+
+      </Card>
     </Container>
-
-
-    /* Code for task 3.4
-    <form>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <button type="sumbit" onClick={handleSubmit}>Submit</button>
-    </form> */
   );
 }
 
