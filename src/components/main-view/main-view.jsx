@@ -4,6 +4,7 @@ import axios from 'axios';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { RegistrationView } from '../register-view/register-view'
 
 import { Row, Col, Navbar, Nav, Container } from 'react-bootstrap';
 
@@ -104,12 +105,17 @@ export class MainView extends React.Component {
 
     render() {
         const { movies, selectedMovie, user, isRegistered } = this.state;
-        //if (!isRegistered)
-        //return (<RegistrationView onRegistration={(isRegistered) => this.onRegisttration(isRegistered)} />);
-        if (!user)
+        if (!user) {
             return (<LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />);
+        }
 
-        if (movies.length === 0) return <div className="main-view" />;
+        if (!isRegistered) {
+            return (<RegistrationView onRegistration={(isRegistered) => this.onRegistration(isRegistered)} />);
+        }
+
+
+
+        if (movies.length === 0) { return <div className="main-view" />; }
 
         return (
             <div className="main-view justify-content-md-center">

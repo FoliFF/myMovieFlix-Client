@@ -49,7 +49,7 @@ export function RegistrationView(porps) {
         /* Send a request to the server for authentication
            then call props on registerd user (username) */
         //const isReq = validate();
-        porps.onRegistration(username);
+        porps.onRegistration(true);
         /*
         if (isReq) {
             axios.post('https://movie-api-21197.herokuapp.com/users', {
