@@ -13,33 +13,7 @@ export function RegistrationView(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(username, password, email, birthday);
-<<<<<<< HEAD
-        /* Send a request to the server for authentication
-           then call props on registerd user (username) */
-        //const isReq = validate();
-        porps.onRegistration(true);
-        /*
-        if (isReq) {
-            axios.post('https://movie-api-21197.herokuapp.com/users', {
-                Username: username,
-                Password: password,
-                Email: email,
-                Birthday: birthday
-            }).then(response => {
-                const data = response.data;
-                console.log(data);
-                alert("Successfully registreation. You can now precced to login.");
-                window.open('/', '_self');
-                // The Second argument '_self' is necessary so that the page will open inthe current tab.
-            }).catch((response) => {
-                console.error(response);
-                alert('ERROR user registering');
-            });
-        }
-        */
-=======
         props.onRegistration(username);
->>>>>>> Task3_4
     };
 
     return (

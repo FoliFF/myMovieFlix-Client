@@ -1,20 +1,11 @@
 import React from "react";
 import axios from "axios";
 
-<<<<<<< HEAD
-import { LoginView } from '../login-view/login-view';
-import { MovieCard } from '../movie-card/movie-card';
-import { MovieView } from '../movie-view/movie-view';
-import { RegistrationView } from '../register-view/register-view'
-
-import { Row, Col, Navbar, Nav, Container } from 'react-bootstrap';
-=======
 import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { RegistrationView } from "../register-view/register-view";
 import { Row, Col } from "react-bootstrap";
->>>>>>> Task3_4
 
 import "./main-view.scss";
 
@@ -68,20 +59,6 @@ export class MainView extends React.Component {
     }
 
     render() {
-<<<<<<< HEAD
-        const { movies, selectedMovie, user, isRegistered } = this.state;
-        if (!user) {
-            return (<LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />);
-        }
-
-        if (!isRegistered) {
-            return (<RegistrationView onRegistration={(isRegistered) => this.onRegistration(isRegistered)} />);
-        }
-
-
-
-        if (movies.length === 0) { return <div className="main-view" />; }
-=======
         const { movies, selectedMovie, user, registered } = this.state;
         /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
         if (!user)
@@ -105,7 +82,6 @@ export class MainView extends React.Component {
             );
         // Before the movies have been loaded
         if (movies.length === 0) return <div className="main-view" />;
->>>>>>> Task3_4
 
         return (
             <div className="main-view">

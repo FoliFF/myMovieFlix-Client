@@ -26390,24 +26390,12 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             key: "render",
             value: function render() {
                 var _this3 = this;
-<<<<<<< HEAD
-                var _this$state = this.state, movies = _this$state.movies, selectedMovie = _this$state.selectedMovie, user1 = _this$state.user, isRegistered1 = _this$state.isRegistered;
-                if (!user1) return /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
-=======
                 var _this$state = this.state, movies = _this$state.movies, selectedMovie = _this$state.selectedMovie, user1 = _this$state.user, registered = _this$state.registered;
                 /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/ if (!user1) return /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
->>>>>>> Task3_4
                     onLoggedIn: function onLoggedIn(user) {
                         return _this3.onLoggedIn(user);
                     }
                 });
-<<<<<<< HEAD
-                if (!isRegistered1) return /*#__PURE__*/ _react["default"].createElement(_registerView.RegistrationView, {
-                    onRegistration: function onRegistration(isRegistered) {
-                        return _this3.onRegistration(isRegistered);
-                    }
-                });
-=======
                 if (!registered) return /*#__PURE__*/ _react["default"].createElement(_registerView.RegistrationView, {
                     onRegistration: function onRegistration(register) {
                         return _this3.onRegistration(register);
@@ -26419,7 +26407,6 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                         _this3.setSelectedMovie(newSelectedMovie);
                     }
                 }); // Before the movies have been loaded
->>>>>>> Task3_4
                 if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
                     className: "main-view"
                 });
@@ -29940,11 +29927,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-<<<<<<< HEAD
-},{"react":"21dqq","react-bootstrap":"3AD9A","./login-view.scss":"e57ax","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2","react-bootstrap/Form":"iBZ80"}],"3AD9A":[function(require,module,exports) {
-=======
 },{"react":"21dqq","react-bootstrap":"3AD9A","./login-view.scss":"e57ax","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2"}],"3AD9A":[function(require,module,exports) {
->>>>>>> Task3_4
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Accordion", ()=>(0, _accordionDefault.default));
@@ -45332,90 +45315,6 @@ function _iterableToArrayLimit(arr, i) {
 function _arrayWithHoles(arr) {
     if (Array.isArray(arr)) return arr;
 }
-<<<<<<< HEAD
-//import axios from 'axios';
-function RegistrationView(porps) {
-    var _useState = (0, _react.useState)(""), _useState2 = _slicedToArray(_useState, 2), username = _useState2[0], setUsername = _useState2[1];
-    var _useState3 = (0, _react.useState)(""), _useState4 = _slicedToArray(_useState3, 2), password = _useState4[0], setPassword = _useState4[1];
-    var _useState5 = (0, _react.useState)(""), _useState6 = _slicedToArray(_useState5, 2), email = _useState6[0], setEmail = _useState6[1];
-    var _useState7 = (0, _react.useState)(""), _useState8 = _slicedToArray(_useState7, 2), birthday = _useState8[0], setBirthday = _useState8[1]; //const [usernameError, setUsernameError] = useState('');
-    //const [passwordError, setPasswordError] = useState('');
-    //const [emailError, setEmailError] = useState('');
-    /*
-  const validate = () => {
-      let isReq = true;
-      if (!username) {
-          setUsernameError("Username is required");
-          isReq = false;
-      } else if (username.length < 5) {
-          setUsernameError("Username must be 5 characters long");
-          isReq = false;
-      }
-        if (!password) {
-          setPasswordError("Password is required");
-          isReq = false;
-      } else if (username.length < 5) {
-          setPasswordError("Password must be 5 characters long");
-          isReq = false;
-      }
-        if (!email) {
-          setEmailError("Add Email");
-          isReq = false;
-      } else if (email.indexOf("@") === -1) {
-          setEmail("Email must be a valid email address");
-          isReq = false;
-      }
-        return isReq;
-  };
-  */ var handleRegister = function handleRegister(e) {
-        e.preventDefault();
-        console.log(username, password, email, birthday);
-        /* Send a request to the server for authentication
-       then call props on registerd user (username) */ //const isReq = validate();
-        porps.onRegistration(true);
-    /*
-    if (isReq) {
-        axios.post('https://movie-api-21197.herokuapp.com/users', {
-            Username: username,
-            Password: password,
-            Email: email,
-            Birthday: birthday
-        }).then(response => {
-            const data = response.data;
-            console.log(data);
-            alert("Successfully registreation. You can now precced to login.");
-            window.open('/', '_self');
-            // The Second argument '_self' is necessary so that the page will open inthe current tab.
-        }).catch((response) => {
-            console.error(response);
-            alert('ERROR user registering');
-        });
-    }
-    */ };
-    return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, {
-        fluid: true,
-        className: "registerContainer"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar, {
-        bg: "navColor",
-        variant: "dark",
-        expand: "lg"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, {
-        fluid: true
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Brand, {
-        href: "#home"
-    }, "myMovieFlix"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav, {
-        className: "me-auto"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
-        href: "#logout"
-    }, "Register")))), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
-        className: "registerCard"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Title, {
-        className: "text-center"
-    }, "Welcome to myMovieFlix!"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Subtitle, {
-        className: "mb-2 text-muted text-center"
-    }, "Please register"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "test",
-=======
 function RegistrationView(props) {
     var _useState = (0, _react.useState)(""), _useState2 = _slicedToArray(_useState, 2), username = _useState2[0], setUsername = _useState2[1];
     var _useState3 = (0, _react.useState)(""), _useState4 = _slicedToArray(_useState3, 2), password = _useState4[0], setPassword = _useState4[1];
@@ -45433,62 +45332,30 @@ function RegistrationView(props) {
         controlId: "formUsername"
     }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "text",
->>>>>>> Task3_4
         value: username,
         onChange: function onChange(e) {
             return setUsername(e.target.value);
         },
-<<<<<<< HEAD
-        requried: true,
-        placeholder: "Enter Username"
-    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
-=======
         required: true,
         placeholder: "Enter a username"
     })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
         className: "mb-3 mx-auto mt-4"
     }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
->>>>>>> Task3_4
         type: "password",
         value: password,
         onChange: function onChange(e) {
             return setPassword(e.target.value);
         },
-<<<<<<< HEAD
-        requried: true,
-        minLength: "8",
-        placeholder: "Password"
-    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Email address: "), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
-=======
         required: true,
         minLength: "5",
         placeholder: "at least 5 characters"
     })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
         className: "mb-3 mx-auto mt-4"
     }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Email:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
->>>>>>> Task3_4
         type: "email",
         value: email,
         onChange: function onChange(e) {
             return setEmail(e.target.value);
-<<<<<<< HEAD
-        },
-        requried: true,
-        placeholder: "Email"
-    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Birthday: "), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "date",
-        placeholder: "dd-mm-yyyy",
-        onChange: function onChange(e) {
-            return setBirthday(e.target.value);
-        },
-        value: birthday
-    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
-        className: "registerButton",
-        variant: "secondary",
-        type: "submit",
-        onClick: handleRegister
-    }, "Register"))))))));
-=======
         }
     })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
         className: "mb-3 mx-auto mt-4"
@@ -45503,7 +45370,6 @@ function RegistrationView(props) {
         type: "submit",
         onClick: handleSubmit
     }, "Register"));
->>>>>>> Task3_4
 }
 _c = RegistrationView;
 RegistrationView.propTypes = {
