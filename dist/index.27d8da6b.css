@@ -71,6 +71,24 @@
   display: block;
 }
 
+.directorCard {
+  margin: 30px;
+}
+
+.directorTitle {
+  color: #000;
+}
+
+.genreCard {
+  margin: 30px;
+}
+
+
+
+.navbar-container, .navbar-elements__style {
+  background-color: #fff;
+}
+
 .my-flix {
   color: #4682b4;
 }

@@ -2,35 +2,35 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Card, CardGroup, Container, Col, Row, Navbar, Nav } from 'react-bootstrap';
 import './register-view.scss';
-//import axios from 'axios';
+import axios from 'axios';
 
 export function RegistrationView(porps) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [birthday, setBirthday] = useState('');
-    //const [usernameError, setUsernameError] = useState('');
-    //const [passwordError, setPasswordError] = useState('');
-    //const [emailError, setEmailError] = useState('');
-    /*
+    // Declare hook for each input
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [emailError, setEmailError] = useState('');
+
+    // Validate user input
     const validate = () => {
         let isReq = true;
         if (!username) {
             setUsernameError("Username is required");
             isReq = false;
-        } else if (username.length < 5) {
+        } else if (username.length < 4) {
             setUsernameError("Username must be 5 characters long");
             isReq = false;
         }
-
         if (!password) {
             setPasswordError("Password is required");
             isReq = false;
-        } else if (username.length < 5) {
+        } else if (username.length < 4) {
             setPasswordError("Password must be 5 characters long");
             isReq = false;
         }
-
         if (!email) {
             setEmailError("Add Email");
             isReq = false;
@@ -38,19 +38,16 @@ export function RegistrationView(porps) {
             setEmail("Email must be a valid email address");
             isReq = false;
         }
-
         return isReq;
     };
-    */
+
 
     const handleRegister = (e) => {
         e.preventDefault();
         console.log(username, password, email, birthday);
         /* Send a request to the server for authentication
            then call props on registerd user (username) */
-        //const isReq = validate();
-        porps.onRegistration(true);
-        /*
+        const isReq = validate();
         if (isReq) {
             axios.post('https://movie-api-21197.herokuapp.com/users', {
                 Username: username,
@@ -68,7 +65,6 @@ export function RegistrationView(porps) {
                 alert('ERROR user registering');
             });
         }
-        */
     };
 
     return (

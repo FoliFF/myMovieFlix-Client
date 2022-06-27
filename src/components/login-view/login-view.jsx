@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { Button, Card, CardGroup, Container, Col, Row, Navbar, Nav } from 'react-bootstrap';
-//import axios from 'axios';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import "./login-view.scss";
 
@@ -15,49 +15,50 @@ import "./login-view.scss";
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  // Declare hook for each input
+  const [usernameError, setUsernameError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  //Validate user input
+  const validate = () => {
+    let isReq = true;
+    if (!username) {
+      setUsernameError('Username Required');
+      isReq = false;
+    } else if (username.length < 3) {
+      setUsernameError('Username must be at least 3 characters long.');
+      isReq = false;
+    }
+    if (!password) {
+      setPasswordError('Password Required');
+      isReq = false;
+    } else if (password.length < 4) {
+      setPasswordError('Password must be at least 5 characters long.')
+    }
+    return isReq;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    /*
-    axios.post('https://movie-api-21197.herokuapp.com/login', {
-      Username: username,
-      Password: password
-    }).then(response => {
-      const data = response.data;
-      props.onLoggedIn(data);
-    }).catch(e => {
-      console.log('No such user');
-      alert('Wrong Username or Password. Please register if you are here for the first time.')
-    });*/
-    //Send a request to the server for authentication then call props.onLoggedIn(username) 
-    props.onLoggedIn(username);
+    const isReq = validate();
+    if (isReq) {
+      axios
+        .post('https://movie-api-21197.herokuapp.com/login', {
+          Username: username,
+          Password: password,
+        })
+        .then((response) => {
+          const data = response.data;
+          props.onLoggedIn(data);
+        })
+        .catch((e) => {
+          console.log('no such user');
+          alert(
+            'Wrong Username or Password. If you are new here, please register first.'
+          );
+        });
+    }
   };
-
-  /* THIS IS FROM ARON SUNDAY AND ME TRYING TO UNDERSTAND THE CODE 
-
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      const isReq = validate();
-      if (isReq) {
-        axios
-          .post('https://movie-api-21197.herokuapp.com/login', {
-            Username: username,
-            Password: password,
-          })
-          .then((response) => {
-            const data = response.data;
-            props.onLoggedIn(data);
-          })
-          .catch((e) => {
-            console.log('no such user');
-            alert(
-              'Wrong Username or Password. If you are new here, please register first.'
-            );
-          });
-      }
-    }; 
-  */
 
   return (
     <Container fluid className='loginContainer'>
