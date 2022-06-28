@@ -1,11 +1,11 @@
-$backgroundColor: #1A1E23;
-$textColor: #FFFFFF;
-$elementsColor: #ffc107;
+$primary-color: #aed9e0;
+$background-color: #faf3dd;
+$dark-color: #5e6472;
+$light-color: #fff;
+$font-color: #0d1b2a;
 
-.directorCard {
-  margin: 30px;
-}
 
-.directorTitle {
-  color: black;
-}
+.director-container {
+    min-height: 80vh;
+    position: relative;
+  }

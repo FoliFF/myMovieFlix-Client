@@ -8,7 +8,6 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
-import { NavbarView } from '../navbar-view/navbar-view';
 
 import { Row, Col, Navbar, Nav, Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route } from 'react-router-dom';

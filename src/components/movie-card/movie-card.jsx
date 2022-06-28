@@ -21,7 +21,7 @@ export class MovieCard extends React.Component {
                         {movie.Description.slice(0, 120)}
                     </Card.Text>
                     <Button
-                        id="card-button"
+                        className='button-style'
                         onClick={() => onMovieClick(movie)}
                         variant="link"
                     >
