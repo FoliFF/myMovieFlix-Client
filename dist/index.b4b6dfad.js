@@ -26427,127 +26427,69 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             key: "render",
             value: function render() {
                 var _this3 = this;
-                var _this$state = this.state, movies = _this$state.movies, user1 = _this$state.user;
-                return /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/ _react["default"].createElement(NavbarView, {
-                    user: user1
-                }), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
+                var _this$state = this.state, movies = _this$state.movies, selectedMovie = _this$state.selectedMovie, user1 = _this$state.user, isRegistered1 = _this$state.isRegistered;
+                if (!user1) return /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
+                    onLoggedIn: function onLoggedIn(user) {
+                        return _this3.onLoggedIn(user);
+                    }
+                });
+                if (!isRegistered1) return /*#__PURE__*/ _react["default"].createElement(_registerView.RegistrationView, {
+                    onRegistration: function onRegistration(isRegistered) {
+                        return _this3.onRegistration(isRegistered);
+                    }
+                });
+                if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
+                    className: "main-view"
+                });
+                return /*#__PURE__*/ _react["default"].createElement("div", {
                     className: "main-view justify-content-md-center"
-                }, /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
-                    exact: true,
-                    path: "/",
-                    render: function render() {
-                        if (!user1) return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
-                            onLoggedIn: function onLoggedIn(user) {
-                                return _this3.onLoggedIn(user);
-                            }
-                        }));
-                        if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
-                            className: "main-view"
-                        });
-                        return movies.map(function(m) {
-                            return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
-                                md: 6,
-                                lg: 4,
-                                key: m._id
-                            }, /*#__PURE__*/ _react["default"].createElement(_movieCard.MovieCard, {
-                                movie: m
-                            }));
-                        });
+                }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar, {
+                    className: "mb-5",
+                    id: "techFlixNav",
+                    bg: "navColor",
+                    variant: "dark",
+                    expand: "lg",
+                    sticky: "top"
+                }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, {
+                    fluid: true
+                }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Brand, {
+                    id: "appName",
+                    href: "#home"
+                }, "myMovieFlix"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
+                    className: "toggle"
+                }), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Collapse, {
+                    className: "justify-content-end toggle"
+                }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
+                    id: "link",
+                    href: ""
+                }, "MyPage"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
+                    id: "link",
+                    href: ""
+                }, "Movies"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
+                    id: "link",
+                    href: ""
+                }, "Logout")))), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, null, selectedMovie ? /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
+                    className: "justify-content-lg-center"
+                }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
+                    md: 9
+                }, /*#__PURE__*/ _react["default"].createElement(_movieView.MovieView, {
+                    movie: selectedMovie,
+                    onBackClick: function onBackClick(newSelectedMovie) {
+                        _this3.setSelectedMovie(newSelectedMovie);
                     }
-                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
-                    path: "/register",
-                    render: function render() {
-                        if (user1) return /*#__PURE__*/ _react["default"].createElement(Redirect, {
-                            to: "/"
-                        });
-                        return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_registerView.RegistrationView, null));
-                    }
-                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
-                    path: "/movies/:movieId",
-                    render: function render(_ref) {
-                        var match = _ref.match, history = _ref.history;
-                        if (!user1) return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
-                            onLoggedIn: function onLoggedIn(user) {
-                                return _this3.onLoggedIn(user);
-                            }
-                        }));
-                        if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
-                            className: "main-view"
-                        });
-                        return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
-                            md: 8
-                        }, /*#__PURE__*/ _react["default"].createElement(_movieView.MovieView, {
-                            movie: movies.find(function(m) {
-                                return m._id === match.params.movieId;
-                            }),
-                            onBackClick: function onBackClick() {
-                                return history.goBack();
-                            }
-                        }));
-                    }
-                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
-                    path: "/directors/:name",
-                    render: function render(_ref2) {
-                        var match = _ref2.match, history = _ref2.history;
-                        if (!user1) return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
-                            onLoggedIn: function onLoggedIn(user) {
-                                return _this3.onLoggedIn(user);
-                            }
-                        }));
-                        if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
-                            className: "main-view"
-                        });
-                        return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
-                            md: 8
-                        }, /*#__PURE__*/ _react["default"].createElement(_directorView.DirectorView, {
-                            director: movies.find(function(m) {
-                                return m.Director.Name === match.params.name;
-                            }).Director,
-                            onBackClick: function onBackClick() {
-                                return history.goBack();
-                            }
-                        }));
-                    }
-                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
-                    path: "/genres/:name",
-                    render: function render(_ref3) {
-                        var match = _ref3.match, history = _ref3.history;
-                        if (!user1) return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
-                            onLoggedIn: function onLoggedIn(user) {
-                                return _this3.onLoggedIn(user);
-                            }
-                        }));
-                        if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
-                            className: "main-view"
-                        });
-                        return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
-                            md: 8
-                        }, /*#__PURE__*/ _react["default"].createElement(_genreView.GenreView, {
-                            genre: movies.find(function(m) {
-                                return m.Genre.Name === match.params.name;
-                            }).Genre,
-                            onBackClick: function onBackClick() {
-                                return history.goBack();
-                            }
-                        }));
-                    }
-                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
-                    path: "/users/".concat(user1),
-                    render: function render(_ref4) {
-                        var match = _ref4.match, history = _ref4.history;
-                        if (!user1) return /*#__PURE__*/ _react["default"].createElement(Redirect, {
-                            to: "/"
-                        });
-                        return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_profileView.ProfileView, {
-                            user: user1,
-                            history: history,
-                            movies: movies,
-                            onBackClick: function onBackClick() {
-                                return history.goBack();
-                            }
-                        }));
-                    }
-                })));
+                }))) : /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
+                    className: "justify-content-lg-center"
+                }, movies.map(function(movie1) {
+                    return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
+                        md: 4
+                    }, /*#__PURE__*/ _react["default"].createElement(_movieCard.MovieCard, {
+                        key: movie1._id,
+                        movie: movie1,
+                        onMovieClick: function onMovieClick(movie) {
+                            _this3.setSelectedMovie(movie);
+                        }
+                    }));
+                }))));
             }
         }
     ]);
