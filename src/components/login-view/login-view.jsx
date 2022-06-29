@@ -25,7 +25,7 @@ export function LoginView(props) {
     if (!username) {
       setUsernameError('Username Required');
       isReq = false;
-    } else if (username.length < 3) {
+    } else if (username.length < 2) {
       setUsernameError('Username must be at least 3 characters long.');
       isReq = false;
     }

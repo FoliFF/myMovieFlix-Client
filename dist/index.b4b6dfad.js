@@ -26343,9 +26343,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
         _this = _super.call(this); //Initial state is set to null.
         _this.state = {
             movies: [],
-            selectedMovie: null,
-            user: null,
-            isRegistered: null
+            user: null
         };
         return _this;
     }
@@ -26405,39 +26403,18 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 this.setState({
                     user: null
                 });
-            } //For a successfully registered user.
-        },
-        {
-            key: "onRegistration",
-            value: function onRegistration(isRegistered) {
-                this.setState({
-                    isRegistered: isRegistered
-                });
-            }
-        },
-        {
-            key: "setSelectedMovie",
-            value: function setSelectedMovie(movie) {
-                this.setState({
-                    selectedMovie: movie
-                });
             }
         },
         {
             key: "render",
             value: function render() {
                 var _this3 = this;
-                var _this$state = this.state, movies = _this$state.movies, selectedMovie = _this$state.selectedMovie, user1 = _this$state.user, isRegistered1 = _this$state.isRegistered;
-                if (!user1) return /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
+                var _this$state = this.state, movies = _this$state.movies, user1 = _this$state.user;
+                if (!user1) return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
                     onLoggedIn: function onLoggedIn(user) {
                         return _this3.onLoggedIn(user);
                     }
-                });
-                if (!isRegistered1) return /*#__PURE__*/ _react["default"].createElement(_registerView.RegistrationView, {
-                    onRegistration: function onRegistration(isRegistered) {
-                        return _this3.onRegistration(isRegistered);
-                    }
-                });
+                })));
                 if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
                     className: "main-view"
                 });
@@ -26468,28 +26445,34 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 }, "Movies"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
                     id: "link",
                     href: ""
-                }, "Logout")))), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, null, selectedMovie ? /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
-                    className: "justify-content-lg-center"
-                }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
-                    md: 9
-                }, /*#__PURE__*/ _react["default"].createElement(_movieView.MovieView, {
-                    movie: selectedMovie,
-                    onBackClick: function onBackClick(newSelectedMovie) {
-                        _this3.setSelectedMovie(newSelectedMovie);
+                }, "Logout")))), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
+                    className: "main-view justify-content-md-center"
+                }, /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
+                    exact: true,
+                    path: "/",
+                    render: function render() {
+                        return movies.map(function(m) {
+                            return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
+                                md: 3,
+                                key: m._id
+                            }, /*#__PURE__*/ _react["default"].createElement(_movieCard.MovieCard, {
+                                movie: m
+                            }));
+                        });
                     }
-                }))) : /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
-                    className: "justify-content-lg-center"
-                }, movies.map(function(movie1) {
-                    return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
-                        md: 4
-                    }, /*#__PURE__*/ _react["default"].createElement(_movieCard.MovieCard, {
-                        key: movie1._id,
-                        movie: movie1,
-                        onMovieClick: function onMovieClick(movie) {
-                            _this3.setSelectedMovie(movie);
-                        }
-                    }));
-                }))));
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
+                    path: "/movies/:movieId",
+                    render: function render(_ref) {
+                        var match = _ref.match;
+                        return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
+                            md: 8
+                        }, /*#__PURE__*/ _react["default"].createElement(_movieView.MovieView, {
+                            movie: movies.find(function(m) {
+                                return m._id === match.params.movieId;
+                            })
+                        }));
+                    }
+                })))));
             }
         }
     ]);
@@ -29950,7 +29933,7 @@ function _arrayWithHoles(arr) {
         if (!username) {
             setUsernameError("Username Required");
             isReq = false;
-        } else if (username.length < 3) {
+        } else if (username.length < 2) {
             setUsernameError("Username must be at least 3 characters long.");
             isReq = false;
         }
@@ -45663,9 +45646,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ProfileView = ProfileView;
 var _react = _interopRequireWildcard(require("react"));
-var _axios = _interopRequireDefault(require("axios"));
+require("./profile-view.scss");
+var _propTypes = _interopRequireDefault(require("prop-types"));
 var _reactBootstrap = require("react-bootstrap");
+var _axios = _interopRequireDefault(require("axios"));
 var _reactRouterDom = require("react-router-dom");
+var _movieCard = require("../movie-card/movie-card");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         "default": obj
@@ -45743,112 +45729,158 @@ function _iterableToArrayLimit(arr, i) {
 function _arrayWithHoles(arr) {
     if (Array.isArray(arr)) return arr;
 }
-function ProfileView(props) {
-    var _useState = (0, _react.useState)(""), _useState2 = _slicedToArray(_useState, 2), user = _useState2[0], setUser = _useState2[1];
-    var _useState3 = (0, _react.useState)(props.movies), _useState4 = _slicedToArray(_useState3, 2), movies = _useState4[0], setMovies = _useState4[1];
-    var _useState5 = (0, _react.useState)([]), _useState6 = _slicedToArray(_useState5, 2), favoriteMovies = _useState6[0], setFavoriteMovies = _useState6[1];
-    var _useState7 = (0, _react.useState)(true), _useState8 = _slicedToArray(_useState7, 2), isLoading = _useState8[0], setIsLoading = _useState8[1];
-    var loggedUser = localStorage.getItem("user");
-    var token = localStorage.getItem("token"); // Get a logged user
-    var getUser = function getUser() {
-        _axios["default"].get("https://movie-api-1112.herokuapp.com/users/".concat(loggedUser), {
-            headers: {
-                Authorization: "Bearer ".concat(token)
-            }
-        }).then(function(response) {
-            console.log(response);
-            setUser(response.data);
-            setFavoriteMovies(response.data.FavoriteMovies);
-        })["catch"](function(error) {
-            return console.log(error);
-        });
-    }; //fetch movies from API
-    var getMovies = function getMovies() {
-        _axios["default"].get("https://movie-api-1112.herokuapp.com/movies/", {
-            headers: {
-                Authorization: "Bearer ".concat(token)
-            } // authenticated HTTP request to API
-        }).then(function(response) {
-            console.log(response);
-            setIsLoading(false); // assign the result to the state
-            setMovies(response.data);
-        })["catch"](function(error) {
-            console.log(error);
-            setIsLoading(true);
-        });
-    };
+function ProfileView(_ref) {
+    var movies = _ref.movies;
+    var _useState = (0, _react.useState)(""), _useState2 = _slicedToArray(_useState, 2), username = _useState2[0], setUsername = _useState2[1];
+    var _useState3 = (0, _react.useState)(""), _useState4 = _slicedToArray(_useState3, 2), password = _useState4[0], setPassword = _useState4[1];
+    var _useState5 = (0, _react.useState)(""), _useState6 = _slicedToArray(_useState5, 2), email = _useState6[0], setEmail = _useState6[1];
+    var _useState7 = (0, _react.useState)(""), _useState8 = _slicedToArray(_useState7, 2), birthday = _useState8[0], setBirthday = _useState8[1];
+    var _useState9 = (0, _react.useState)([]), _useState10 = _slicedToArray(_useState9, 2), favouriteMovies = _useState10[0], setFavouriteMovies = _useState10[1];
+    var _useState11 = (0, _react.useState)(false), _useState12 = _slicedToArray(_useState11, 2), show = _useState12[0], setShow = _useState12[1]; // setting the state for the deleteUser modal 
     (0, _react.useEffect)(function() {
         getUser();
-        getMovies();
-    }, []); // delete user's profile
-    var handleDelete = function handleDelete() {
-        _axios["default"]["delete"]("https://movie-api-1112.herokuapp.com/users/".concat(loggedUser), {
+    }, []);
+    var getUser = function getUser() {
+        var token = localStorage.getItem("token");
+        var user = localStorage.getItem("user");
+        _axios["default"].get("https://movie-api-21197.herokuapp.com/users/".concat(user), {
             headers: {
                 Authorization: "Bearer ".concat(token)
             }
-        }).then(function() {
-            setIsLoading(false);
-            alert("".concat(loggedUser, "'s profile has been deleted!"));
-            localStorage.clear();
-            window.open("/register", "_self");
-        })["catch"](function(error) {
-            return console.log(error);
+        }).then(function(response) {
+            setUsername(response.data.Username);
+            setEmail(response.data.Email);
+            setFavouriteMovies(response.data.FavouriteMovies);
+            console.log(response.data);
+        })["catch"](function(e) {
+            console.log("Error");
         });
-        setIsLoading(true);
+    }; // Update users info 
+    var updateUser = function updateUser() {
+        var token = localStorage.getItem("token");
+        var user = localStorage.getItem("user");
+        _axios["default"].put("https://amro-mansour-movie-api.herokuapp.com/users/".concat(user), {
+            Username: username,
+            Email: email,
+            //Email is a variable which holds the email
+            Birthday: birthday,
+            Password: password
+        }, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        }).then(function(response) {
+            alert("Your profile has been updated");
+            localStorage.setItem("user", response.data.Username), console.log(response.data);
+        })["catch"](function(e) {
+            console.log("Error");
+        });
+    }; // Delete user 
+    var deleteUser = function deleteUser() {
+        setShowModal(false);
+        var token = localStorage.getItem("token");
+        var user = localStorage.getItem("user");
+        _axios["default"]["delete"]("https://amro-mansour-movie-api.herokuapp.com/users/".concat(user), {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        }).then(function(response) {
+            console.log(response.data);
+            alert("Your profile has been deleted");
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            window.open("/", "_self");
+        })["catch"](function(e) {
+            console.log("Error");
+        });
     };
-    return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, {
-        fluid: true
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
-        className: "d-flex-justify content-center"
-    }, isLoading ? /*#__PURE__*/ _react["default"].createElement("h4", {
-        className: "d-flex justify-content-center m-2"
-    }, "Loading...", /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Spinner, {
-        className: "d-flex justify-content-center m-5",
-        animation: "border",
-        role: "status",
-        variant: "success"
-    })) : null), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
-        className: "d-flex justify-content-md-center mt-4 mb-2"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
-        sm: 8
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Title, {
-        className: "profile-title--text"
-    }, "User Info"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Text, {
-        className: "h5 user-name--text"
-    }, "Name: ", /*#__PURE__*/ _react["default"].createElement("span", {
-        className: "profile-span ml-3"
-    }, user.Username)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Text, {
-        className: "h5 user-email--text"
-    }, "E-Mail: ", /*#__PURE__*/ _react["default"].createElement("span", {
-        className: "profile-span ml-3"
-    }, user.Email))), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
-        className: "d-flex justify-content-md-center mb-2"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
-        className: "profile-btn mr-3",
-        variant: "outline-warning",
-        onClick: handleDelete
-    }, "Delete Profile"), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Link, {
-        to: "/"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
-        className: "profile-btn  ml-3",
-        variant: "outline-success",
-        type: "submit"
-    }, "Back to Home")))))), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
-        className: "d-flex justify-content-md-center"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
-        sm: 8,
-        className: "h4 text-main"
-    }, /*#__PURE__*/ _react["default"].createElement("h5", {
-        className: "text-main ml-4",
-        style: {
-            fontWeight: "bold"
-        }
-    }, "Favorite Movies"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _react["default"].createElement(FavoriteMovies, {
-        movies: movies,
-        favoriteMovies: favoriteMovies,
-        loggedUser: loggedUser,
-        token: token
-    })))));
+    var renderFavourits = function renderFavourits() {
+        console.log(movies);
+        if (movies.length + 0) return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
+            className: "justify-content-md-center"
+        }, favouriteMovies.length === 0 ? /*#__PURE__*/ _react["default"].createElement("h5", null, "Add some movies to your list") : favouriteMovies.map(function(movieId, i) {
+            return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
+                md: 6,
+                lg: 4
+            }, /*#__PURE__*/ _react["default"].createElement(_movieCard.MovieCard, {
+                key: "".concat(i, "-").concat(movieId),
+                movie: movies.find(function(m) {
+                    return m._id == movieId;
+                })
+            }));
+        }));
+    }; // Functions needed to open and close the modal (below) to delete a user 
+    var handleClose = function handleClose() {
+        return setShow(false);
+    };
+    var handleShow = function handleShow() {
+        return setShow(true);
+    }; // Function that contains the modal to delete a users account 
+    var cancelUserModal = function cancelUserModal() {
+        return /*#__PURE__*/ _react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Modal, {
+            style: {
+                background: "transparent"
+            },
+            show: show,
+            onHide: handleClose
+        }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Modal.Header, {
+            closeButton: true
+        }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Modal.Title, null, "Delete your Account")), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Modal.Body, null, "Are you sure you want to delete your account?"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Modal.Footer, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
+            variant: "secondary",
+            onClick: handleClose
+        }, "Close"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
+            variant: "primary",
+            onClick: deleteUser
+        }, "Delete"))));
+    };
+    return /*#__PURE__*/ _react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, null, /*#__PURE__*/ _react["default"].createElement("h1", null, "Profile Page"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
+        className: "mb-3",
+        controlId: "username"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
+        onChange: function onChange(e) {
+            return setUsername(e.target.value);
+        },
+        value: username,
+        type: "text",
+        placeholder: "username"
+    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
+        className: "mb-3",
+        controlId: "email"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Email address"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
+        onChange: function onChange(e) {
+            return setEmail(e.target.value);
+        },
+        value: email,
+        type: "email",
+        placeholder: "Enter new email"
+    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
+        className: "mb-3",
+        controlId: "birthday"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Birthday:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
+        onChange: function onChange(e) {
+            return setBirthday(e.target.value);
+        },
+        value: birthday,
+        type: "date",
+        placeholder: "birthday"
+    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
+        className: "mb-3",
+        controlId: "password"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Password"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
+        onChange: function onChange(e) {
+            return setPassword(e.target.value);
+        },
+        type: "password",
+        value: password,
+        placeholder: "Password"
+    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
+        variant: "warning",
+        onClick: updateUser
+    }, "Update you profile"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
+        className: "deleteButton",
+        variant: "link",
+        onClick: handleShow
+    }, "Delete your profile")), cancelUserModal(), /*#__PURE__*/ _react["default"].createElement("p", null), /*#__PURE__*/ _react["default"].createElement("h2", null, "Favourite Movies:"), renderFavourits()));
 }
 _c = ProfileView;
 var _c;
@@ -45859,7 +45891,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-bootstrap":"3AD9A","axios":"jo6P5","react-router-dom":"fdOAw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eBaMl":[function() {},{}],"6jAr6":[function(require,module,exports) {
+},{"react":"21dqq","react-bootstrap":"3AD9A","axios":"jo6P5","react-router-dom":"fdOAw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./profile-view.scss":"eyKYH","prop-types":"7wKI2","../movie-card/movie-card":"bwuIu"}],"eyKYH":[function() {},{}],"eBaMl":[function() {},{}],"6jAr6":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$f521 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

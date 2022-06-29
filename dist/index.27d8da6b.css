@@ -31,6 +31,12 @@ h1, h2, h3, h4, h5, p {
   font-weight: 700 !important;
 }
 
+body {
+  color: #fff;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
 .card-title {
   color: #0d1b2a !important;
   font-size: 18px !important;
