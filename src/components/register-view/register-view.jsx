@@ -68,70 +68,68 @@ export function RegistrationView(porps) {
     };
 
     return (
-        <Container fluid className='registerContainer'>
-            <Navbar bg='navColor' variant='dark' expand='lg'>
-                <Container fluid>
-                    <Navbar.Brand href='#home'>myMovieFlix</Navbar.Brand>
-                    <Nav className='me-auto'>
-                        <Nav.Link href='#logout'>Register</Nav.Link>
-                    </Nav>
-                </Container>
-            </Navbar>
-
+        <Container className='container-style'>
             <Row>
                 <Col>
                     <CardGroup>
-                        <Card className='registerCard'>
+                        <Card>
                             <Card.Body>
-                                <Card.Title className='text-center'>Welcome to myMovieFlix!</Card.Title>
-                                <Card.Subtitle className='mb-2 text-muted text-center'>Please register</Card.Subtitle>
-
+                                <Card.Title>Create an account for free</Card.Title>
                                 <Form>
-                                    <Form.Group>
+                                    <Form.Group className="mb-3">
                                         <Form.Label>Username:</Form.Label>
                                         <Form.Control
-                                            type='test'
+                                            type='text'
                                             value={username}
                                             onChange={e => setUsername(e.target.value)}
-                                            requried
-                                            placeholder='Enter Username'
+                                            placeholder='Enter a username'
+                                            required
                                         />
+                                        {/* code added here to display validation error */}
+                                        {usernameErr && <p>{usernameErr}</p>}
                                     </Form.Group>
 
-                                    <Form.Group>
+                                    <Form.Group className="mb-3">
                                         <Form.Label>Password:</Form.Label>
                                         <Form.Control
                                             type='password'
                                             value={password}
                                             onChange={e => setPassword(e.target.value)}
-                                            requried
-                                            minLength="8"
-                                            placeholder='Password'
+                                            minLength='6'
+                                            placeholder='Your password must be 6 or more characters'
+                                            required
+                                        />
+                                        {/* code added here to display validation error */}
+                                        {passwordErr && <p>{passwordErr}</p>}
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Date of Birth:</Form.Label>
+                                        <Form.Control
+                                            type='date'
+                                            value={birthday}
+                                            onChange={e => setBirthday(e.target.value)}
                                         />
                                     </Form.Group>
 
-                                    <Form.Group>
-                                        <Form.Label>Email address: </Form.Label>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Email:</Form.Label>
                                         <Form.Control
                                             type='email'
                                             value={email}
                                             onChange={e => setEmail(e.target.value)}
-                                            requried
-                                            placeholder='Email'
+                                            placeholder='Enter a valid Email address'
+                                            required
                                         />
+                                        {/* code added here to display validation error */}
+                                        {emailErr && <p>{emailErr}</p>}
                                     </Form.Group>
 
-                                    <Form.Group>
-                                        <Form.Label>Birthday: </Form.Label>
-                                        <Form.Control
-                                            type='date'
-                                            placeholder='dd-mm-yyyy'
-                                            onChange={e => setBirthday(e.target.value)}
-                                            value={birthday}
-                                        />
-                                    </Form.Group>
-
-                                    <Button className='registerButton' variant="secondary" type='submit' onClick={handleRegister}>Register</Button>
+                                    <Button variant='warning'
+                                        type='submit'
+                                        onClick={handleRegister}>
+                                        Sign Up
+                                    </Button>
                                 </Form>
                             </Card.Body>
                         </Card>

@@ -1,3 +1,11 @@
-.card-movie--title {
-  font-weight: 700 !important;
+$backgroundColor: #1A1E23;
+$textColor: #FFFFFF;
+$elementsColor: #ffc107;
+
+.add-list__button {
+  margin-left: 10px;
+}
+
+.movie-view__card {
+  margin: 20px;
 }

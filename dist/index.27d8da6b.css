@@ -2,40 +2,40 @@
   margin: 20px;
 }
 
-.card:hover {
-  box-shadow: 5px 1px 20px 1px #00000041 !important;
+.card-style {
+  margin: 20px;
 }
 
-.card-body {
-  flex-wrap: wrap;
-  padding: 1.5rem !important;
+.image-style {
+  width: 286px;
+  height: 400px;
 }
 
-.movie-description {
-  text-align: center;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 70ch;
-  overflow: hidden;
+.button-style {
+  margin-left: 180px;
 }
 
-h1, h2, h3, h4, h5, p {
-  color: #0d1b2a !important;
+.add-list__button {
+  margin-left: 10px;
 }
 
-.card.badge {
-  color: #0d1b2a;
+.movie-view__card {
+  margin: 20px;
 }
 
-.card-movie--title {
-  font-weight: 700 !important;
+.directorCard {
+  margin: 30px;
 }
 
-body {
-  color: #fff;
-  max-width: 100% !important;
-  margin: 0 !important;
+.directorTitle {
+  color: #000;
 }
+
+.genreCard {
+  margin: 30px;
+}
+
+
 
 .card-title {
   color: #0d1b2a !important;
@@ -69,6 +69,10 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
+}
+
+.navbar-container, .navbar-elements__style {
+  background-color: #fff;
 }
 
 .container {

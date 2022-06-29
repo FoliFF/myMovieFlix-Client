@@ -40,7 +40,7 @@ export function ProfileView({ movies }) {
     const updateUser = () => {
         let token = localStorage.getItem('token');
         let user = localStorage.getItem("user");
-        axios.put(`https://amro-mansour-movie-api.herokuapp.com/users/${user}`, {
+        axios.put(`https://movie-api-21197.herokuapp.com/users/${user}`, {
             Username: username,
             Email: email, //Email is a variable which holds the email
             Birthday: birthday,
@@ -65,7 +65,7 @@ export function ProfileView({ movies }) {
         setShowModal(false)
         let token = localStorage.getItem('token');
         let user = localStorage.getItem("user");
-        axios.delete(`https://amro-mansour-movie-api.herokuapp.com/users/${user}`,
+        axios.delete(`https://movie-api-21197.herokuapp.com/users/${user}`,
             {
                 headers: {
                     Authorization: 'Bearer ' + token

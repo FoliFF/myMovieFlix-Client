@@ -8,11 +8,13 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
+import { NavbarView } from '../navbar-view/navbar-view';
 
 import { Row, Col, Navbar, Nav, Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import "./main-view.scss";
+
 
 export class MainView extends React.Component {
 
@@ -84,7 +86,8 @@ export class MainView extends React.Component {
 
         return (
 
-            <div className="main-view justify-content-md-center">
+
+            /*
                 <Navbar className="mb-5" id="techFlixNav" bg="navColor" variant="dark" expand="lg" sticky="top">
                     <Container fluid>
                         <Navbar.Brand id="appName" href="#home">myMovieFlix</Navbar.Brand>
@@ -102,26 +105,73 @@ export class MainView extends React.Component {
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
-                <Router>
-                    <Container>
-                        <Row className="main-view justify-content-md-center">
-                            <Route exact path="/" render={() => {
-                                return movies.map(m => (
-                                    <Col md={3} key={m._id}>
-                                        <MovieCard movie={m} />
-                                    </Col>
-                                ))
-                            }} />
-                            <Route path="/movies/:movieId" render={({ match }) => {
-                                return <Col md={8}>
-                                    <MovieView movie={movies.find(m => m._id === match.params.movieId)} />
-                                </Col>
-                            }} />
+            */
+            <Router>
+                <NavbarView user={user} />
+                <Row className="main-view justify-content-md-center">
 
-                        </Row>
-                    </Container>
-                </Router>
-            </div>
+                    <Route exact path="/" render={() => {
+                        if (!user) return <Col>
+                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                        </Col>
+                        if (movies.length === 0) return <div className="main-view" />;
+
+                        return movies.map(m => (
+                            <Col md={6} lg={4} key={m._id}>
+                                <MovieCard movie={m} />
+                            </Col>
+                        ))
+                    }} />
+
+                    <Route path="/register" render={() => {
+                        if (user) return <Redirect to="/" />
+                        return <Col>
+                            <RegistrationView />
+                        </Col>
+                    }} />
+
+                    <Route path="/movies/:movieId" render={({ match, history }) => {
+                        if (!user) return <Col>
+                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                        </Col>
+                        if (movies.length === 0) return <div className="main-view" />;
+                        return <Col md={8}>
+                            <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+                        </Col>
+                    }} />
+
+                    <Route path="/directors/:name" render={({ match, history }) => {
+                        if (!user) return <Col>
+                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                        </Col>
+                        if (movies.length === 0) return <div className="main-view" />;
+                        return <Col md={8}>
+                            <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
+                        </Col>
+                    }
+                    } />
+
+                    <Route path="/genres/:name" render={({ match, history }) => {
+                        if (!user) return <Col>
+                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                        </Col>
+                        if (movies.length === 0) return <div className="main-view" />;
+                        return <Col md={8}>
+                            <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()} />
+                        </Col>
+                    }
+                    } />
+
+                    {/* route for link on main-view to profile-view */}
+                    <Route path={`/users/${user}`} render={({ match, history }) => {
+                        if (!user) return <Redirect to="/" />
+                        return <Col>
+                            <ProfileView user={user} history={history} movies={movies} onBackClick={() => history.goBack()} />
+                        </Col>
+                    }} />
+
+                </Row>
+            </Router>
         );
     }
 }

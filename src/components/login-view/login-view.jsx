@@ -61,51 +61,24 @@ export function LoginView(props) {
   };
 
   return (
-    <Container fluid className='loginContainer'>
+    <Form className="login-form__style">
+      <Form.Group className="mb-3 form-group" controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control type="text" placeholder="Enter username" value={username} onChange={e => setUsername(e.target.value)} />
+        {/* code added here to display validation error */}
+        {usernameError && <p>{usernameError}</p>}
+      </Form.Group>
 
-      <Navbar bg='navColor' variant='dark' expand='lg'>
-        <Container fluid>
-          <Navbar.Brand href='#home'>myMovieFlix</Navbar.Brand>
-          <Nav className='me-auto'>
-            <Nav.Link href='#logout'>Login</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-
-      <Card className='loginCard'>
-        <Card.Body>
-          <Card.Title className='text-center'>Welcome to myMovieFlix!</Card.Title>
-          <Card.Subtitle className='mb-2 text-muted text-center'>Please Login</Card.Subtitle>
-
-          <Form>
-            <Form.Group controlId='fromUsername'>
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                ype='text'
-                onChange={e => setUsername(e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group controlId='fromPassword'>
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                className='mb-3'
-                type='Password'
-                onChange={e => setPassword(e.target.value)}
-              />
-            </Form.Group>
-
-            <Button
-              className='loginBotton'
-              variant='secondary'
-              type='submit'
-              onClick={handleSubmit}>Login
-            </Button>
-          </Form>
-        </Card.Body>
-
-      </Card>
-    </Container>
+      <Form.Group className="mb-3" controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+        {/* code added here to display validation error */}
+        {passwordError && <p>{passwordError}</p>}
+      </Form.Group>
+      <Button variant="warning" type="submit" onClick={handleSubmit}>
+        Log In
+      </Button>
+    </Form>
   );
 }
 
