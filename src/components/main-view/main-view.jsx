@@ -43,8 +43,9 @@ export class MainView extends React.Component {
     }
 
     getMovies(token) {
+        const tokens = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjkxMDBkMTUxMjM0ZjhlNjVkZDA4YjIiLCJVc2VybmFtZSI6IkFsaWNlMSIsIlBhc3N3b3JkIjoiJDJiJDEwJFhHZmFhT0tMM3N3T0sxWHMzb2l6QS4xTGpvclpSRXNoNHVLTzVrS3JCR1FPVHpGUEpLa21TIiwiRW1haWwiOiJhbGllY0BnbWFpbC5jb20iLCJCaXJ0aGRheSI6IjIwMDAtMTAtMTBUMDA6MDA6MDAuMDAwWiIsIkZhdm9yaXRlTW92aWVzIjpbXSwiX192IjowLCJpYXQiOjE2NTY2OTU0NjUsImV4cCI6MTY1NjcyNDI2NSwic3ViIjoiQWxpY2UxIn0.jO1wKZstN6vWXOILCXF3xT4woPFL5YSBgjo37Ic2DcA';
         axios.get('https://movie-api-21197.herokuapp.com/movies', {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${tokens}` }
         }).then(response => {
             // Assign the result to the state
             console.log("response", response.data);

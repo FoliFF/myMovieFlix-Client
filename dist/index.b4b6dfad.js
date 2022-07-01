@@ -26369,9 +26369,10 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             key: "getMovies",
             value: function getMovies(token) {
                 var _this2 = this;
+                var tokens = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjkxMDBkMTUxMjM0ZjhlNjVkZDA4YjIiLCJVc2VybmFtZSI6IkFsaWNlMSIsIlBhc3N3b3JkIjoiJDJiJDEwJFhHZmFhT0tMM3N3T0sxWHMzb2l6QS4xTGpvclpSRXNoNHVLTzVrS3JCR1FPVHpGUEpLa21TIiwiRW1haWwiOiJhbGllY0BnbWFpbC5jb20iLCJCaXJ0aGRheSI6IjIwMDAtMTAtMTBUMDA6MDA6MDAuMDAwWiIsIkZhdm9yaXRlTW92aWVzIjpbXSwiX192IjowLCJpYXQiOjE2NTY2OTU0NjUsImV4cCI6MTY1NjcyNDI2NSwic3ViIjoiQWxpY2UxIn0.jO1wKZstN6vWXOILCXF3xT4woPFL5YSBgjo37Ic2DcA";
                 _axios["default"].get("https://movie-api-21197.herokuapp.com/movies", {
                     headers: {
-                        Authorization: "Bearer ".concat(token)
+                        Authorization: "Bearer ".concat(tokens)
                     }
                 }).then(function(response) {
                     // Assign the result to the state
@@ -26569,7 +26570,7 @@ exports.MainView = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","react-bootstrap":"3AD9A","../director-view/director-view":"9tpci","../genre-view/genre-view":"4tuA0","../profile-view/profile-view":"2vVqf","react-router-dom":"fdOAw","./main-view.scss":"eBaMl","../register-view/register-view":"6jAr6","../navbar-view/navbar-view":"divrl"}],"km3Ru":[function(require,module,exports) {
+},{"react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","react-bootstrap":"3AD9A","./main-view.scss":"eBaMl","../register-view/register-view":"6jAr6","../director-view/director-view":"9tpci","../genre-view/genre-view":"4tuA0","../profile-view/profile-view":"2vVqf","../navbar-view/navbar-view":"divrl","react-router-dom":"fdOAw"}],"km3Ru":[function(require,module,exports) {
 "use strict";
 var Refresh = require("react-refresh/runtime");
 function debounce(func, delay) {
@@ -30085,7 +30086,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-bootstrap":"3AD9A","./login-view.scss":"e57ax","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","react-bootstrap/Form":"iBZ80","prop-types":"7wKI2"}],"3AD9A":[function(require,module,exports) {
+},{"react":"21dqq","react-bootstrap":"3AD9A","./login-view.scss":"e57ax","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2","react-bootstrap/Form":"iBZ80","axios":"jo6P5"}],"3AD9A":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Accordion", ()=>(0, _accordionDefault.default));
@@ -43506,7 +43507,7 @@ MovieCard.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","./movie-card.scss":"d6HH4","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Button":"aPzUt","react-bootstrap/Card":"lAynp","react-router-dom":"fdOAw"}],"d6HH4":[function() {},{}],"fdOAw":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap/Button":"aPzUt","react-bootstrap/Card":"lAynp","./movie-card.scss":"d6HH4","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"fdOAw"}],"d6HH4":[function() {},{}],"fdOAw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MemoryRouter", ()=>(0, _reactRouter.MemoryRouter));
@@ -45457,7 +45458,221 @@ MovieView.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","react-router-dom":"fdOAw","./movie-view.scss":"jnlR5","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","axios":"jo6P5"}],"jnlR5":[function() {},{}],"9tpci":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","react-router-dom":"fdOAw","./movie-view.scss":"jnlR5","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","axios":"jo6P5"}],"jnlR5":[function() {},{}],"eBaMl":[function() {},{}],"6jAr6":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$f521 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$f521.prelude(module);
+
+try {
+"use strict";
+function _typeof(obj1) {
+    "@babel/helpers - typeof";
+    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj) {
+        return typeof obj;
+    } : function(obj) {
+        return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    }, _typeof(obj1);
+}
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.RegistrationView = RegistrationView;
+var _react = _interopRequireWildcard(require("react"));
+var _propTypes = _interopRequireDefault(require("prop-types"));
+var _reactBootstrap = require("react-bootstrap");
+require("./register-view.scss");
+var _axios = _interopRequireDefault(require("axios"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        "default": obj
+    };
+}
+function _getRequireWildcardCache(nodeInterop1) {
+    if (typeof WeakMap !== "function") return null;
+    var cacheBabelInterop = new WeakMap();
+    var cacheNodeInterop = new WeakMap();
+    return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) {
+        return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+    })(nodeInterop1);
+}
+function _interopRequireWildcard(obj, nodeInterop) {
+    if (!nodeInterop && obj && obj.__esModule) return obj;
+    if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") return {
+        "default": obj
+    };
+    var cache = _getRequireWildcardCache(nodeInterop);
+    if (cache && cache.has(obj)) return cache.get(obj);
+    var newObj = {};
+    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+    for(var key in obj)if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
+        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+        if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
+        else newObj[key] = obj[key];
+    }
+    newObj["default"] = obj;
+    if (cache) cache.set(obj, newObj);
+    return newObj;
+}
+function _slicedToArray(arr, i) {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
+    return arr2;
+}
+function _iterableToArrayLimit(arr, i) {
+    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+    if (_i == null) return;
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _s, _e;
+    try {
+        for(_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true){
+            _arr.push(_s.value);
+            if (i && _arr.length === i) break;
+        }
+    } catch (err) {
+        _d = true;
+        _e = err;
+    } finally{
+        try {
+            if (!_n && _i["return"] != null) _i["return"]();
+        } finally{
+            if (_d) throw _e;
+        }
+    }
+    return _arr;
+}
+function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+}
+function RegistrationView(porps) {
+    var _useState = (0, _react.useState)(""), _useState2 = _slicedToArray(_useState, 2), username = _useState2[0], setUsername = _useState2[1];
+    var _useState3 = (0, _react.useState)(""), _useState4 = _slicedToArray(_useState3, 2), password = _useState4[0], setPassword = _useState4[1];
+    var _useState5 = (0, _react.useState)(""), _useState6 = _slicedToArray(_useState5, 2), email = _useState6[0], setEmail = _useState6[1];
+    var _useState7 = (0, _react.useState)(""), _useState8 = _slicedToArray(_useState7, 2), birthday = _useState8[0], setBirthday = _useState8[1]; // Declare hook for each input
+    var _useState9 = (0, _react.useState)(""), _useState10 = _slicedToArray(_useState9, 2), usernameError = _useState10[0], setUsernameError = _useState10[1];
+    var _useState11 = (0, _react.useState)(""), _useState12 = _slicedToArray(_useState11, 2), passwordError = _useState12[0], setPasswordError = _useState12[1];
+    var _useState13 = (0, _react.useState)(""), _useState14 = _slicedToArray(_useState13, 2), emailError = _useState14[0], setEmailError = _useState14[1]; // Validate user input
+    var validate = function validate() {
+        var isReq = true;
+        if (!username) {
+            setUsernameError("Username is required");
+            isReq = false;
+        } else if (username.length < 4) {
+            setUsernameError("Username must be 5 characters long");
+            isReq = false;
+        }
+        if (!password) {
+            setPasswordError("Password is required");
+            isReq = false;
+        } else if (username.length < 4) {
+            setPasswordError("Password must be 5 characters long");
+            isReq = false;
+        }
+        if (!email) {
+            setEmailError("Add Email");
+            isReq = false;
+        } else if (email.indexOf("@") === -1) {
+            setEmail("Email must be a valid email address");
+            isReq = false;
+        }
+        return isReq;
+    };
+    var handleRegister = function handleRegister(e) {
+        e.preventDefault();
+        console.log(username, password, email, birthday);
+        /* Send a request to the server for authentication
+       then call props on registerd user (username) */ var isReq = validate();
+        if (isReq) _axios["default"].post("https://movie-api-21197.herokuapp.com/users", {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
+        }).then(function(response) {
+            var data = response.data;
+            console.log(data);
+            alert("Successfully registreation. You can now precced to login.");
+            window.open("/", "_self"); // The Second argument '_self' is necessary so that the page will open inthe current tab.
+        })["catch"](function(response) {
+            console.error(response);
+            alert("ERROR user registering");
+        });
+    };
+    return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, {
+        className: "container-style"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Title, null, "Create an account for free"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
+        className: "mb-3"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
+        type: "text",
+        value: username,
+        onChange: function onChange(e) {
+            return setUsername(e.target.value);
+        },
+        placeholder: "Enter a username",
+        required: true
+    }), usernameErr && /*#__PURE__*/ _react["default"].createElement("p", null, usernameErr)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
+        className: "mb-3"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
+        type: "password",
+        value: password,
+        onChange: function onChange(e) {
+            return setPassword(e.target.value);
+        },
+        minLength: "6",
+        placeholder: "Your password must be 6 or more characters",
+        required: true
+    }), passwordErr && /*#__PURE__*/ _react["default"].createElement("p", null, passwordErr)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
+        className: "mb-3"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Date of Birth:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
+        type: "date",
+        value: birthday,
+        onChange: function onChange(e) {
+            return setBirthday(e.target.value);
+        }
+    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
+        className: "mb-3"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Email:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
+        type: "email",
+        value: email,
+        onChange: function onChange(e) {
+            return setEmail(e.target.value);
+        },
+        placeholder: "Enter a valid Email address",
+        required: true
+    }), emailErr && /*#__PURE__*/ _react["default"].createElement("p", null, emailErr)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
+        variant: "warning",
+        type: "submit",
+        onClick: handleRegister
+    }, "Sign Up"))))))));
+}
+_c = RegistrationView;
+RegistrationView.propTypes = {
+    onRegistration: _propTypes["default"].func.isRequired
+};
+var _c;
+$RefreshReg$(_c, "RegistrationView");
+
+  $parcel$ReactRefreshHelpers$f521.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","./register-view.scss":"8il1C","axios":"jo6P5","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"8il1C":[function() {},{}],"9tpci":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad4a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -45600,7 +45815,7 @@ exports.DirectorView = DirectorView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"fdOAw","./director-view.scss":"cVy0f","prop-types":"7wKI2"}],"cVy0f":[function() {},{}],"4tuA0":[function(require,module,exports) {
+},{"react":"21dqq","./director-view.scss":"cVy0f","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"fdOAw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"cVy0f":[function() {},{}],"4tuA0":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$377f = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -45741,7 +45956,7 @@ exports.GenreView = GenreView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"fdOAw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./genre-view.scss":"bk3gk","prop-types":"7wKI2"}],"bk3gk":[function() {},{}],"2vVqf":[function(require,module,exports) {
+},{"react":"21dqq","./genre-view.scss":"bk3gk","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"fdOAw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bk3gk":[function() {},{}],"2vVqf":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$3c12 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -46007,221 +46222,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-bootstrap":"3AD9A","axios":"jo6P5","react-router-dom":"fdOAw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./profile-view.scss":"eyKYH","prop-types":"7wKI2","../movie-card/movie-card":"bwuIu"}],"eyKYH":[function() {},{}],"eBaMl":[function() {},{}],"6jAr6":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$f521 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$f521.prelude(module);
-
-try {
-"use strict";
-function _typeof(obj1) {
-    "@babel/helpers - typeof";
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj) {
-        return typeof obj;
-    } : function(obj) {
-        return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    }, _typeof(obj1);
-}
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.RegistrationView = RegistrationView;
-var _react = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _reactBootstrap = require("react-bootstrap");
-require("./register-view.scss");
-var _axios = _interopRequireDefault(require("axios"));
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-        "default": obj
-    };
-}
-function _getRequireWildcardCache(nodeInterop1) {
-    if (typeof WeakMap !== "function") return null;
-    var cacheBabelInterop = new WeakMap();
-    var cacheNodeInterop = new WeakMap();
-    return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) {
-        return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
-    })(nodeInterop1);
-}
-function _interopRequireWildcard(obj, nodeInterop) {
-    if (!nodeInterop && obj && obj.__esModule) return obj;
-    if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") return {
-        "default": obj
-    };
-    var cache = _getRequireWildcardCache(nodeInterop);
-    if (cache && cache.has(obj)) return cache.get(obj);
-    var newObj = {};
-    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-    for(var key in obj)if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
-        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-        if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
-        else newObj[key] = obj[key];
-    }
-    newObj["default"] = obj;
-    if (cache) cache.set(obj, newObj);
-    return newObj;
-}
-function _slicedToArray(arr, i) {
-    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
-}
-function _nonIterableRest() {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-function _unsupportedIterableToArray(o, minLen) {
-    if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(o);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-function _arrayLikeToArray(arr, len) {
-    if (len == null || len > arr.length) len = arr.length;
-    for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
-    return arr2;
-}
-function _iterableToArrayLimit(arr, i) {
-    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
-    if (_i == null) return;
-    var _arr = [];
-    var _n = true;
-    var _d = false;
-    var _s, _e;
-    try {
-        for(_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true){
-            _arr.push(_s.value);
-            if (i && _arr.length === i) break;
-        }
-    } catch (err) {
-        _d = true;
-        _e = err;
-    } finally{
-        try {
-            if (!_n && _i["return"] != null) _i["return"]();
-        } finally{
-            if (_d) throw _e;
-        }
-    }
-    return _arr;
-}
-function _arrayWithHoles(arr) {
-    if (Array.isArray(arr)) return arr;
-}
-function RegistrationView(porps) {
-    var _useState = (0, _react.useState)(""), _useState2 = _slicedToArray(_useState, 2), username = _useState2[0], setUsername = _useState2[1];
-    var _useState3 = (0, _react.useState)(""), _useState4 = _slicedToArray(_useState3, 2), password = _useState4[0], setPassword = _useState4[1];
-    var _useState5 = (0, _react.useState)(""), _useState6 = _slicedToArray(_useState5, 2), email = _useState6[0], setEmail = _useState6[1];
-    var _useState7 = (0, _react.useState)(""), _useState8 = _slicedToArray(_useState7, 2), birthday = _useState8[0], setBirthday = _useState8[1]; // Declare hook for each input
-    var _useState9 = (0, _react.useState)(""), _useState10 = _slicedToArray(_useState9, 2), usernameError = _useState10[0], setUsernameError = _useState10[1];
-    var _useState11 = (0, _react.useState)(""), _useState12 = _slicedToArray(_useState11, 2), passwordError = _useState12[0], setPasswordError = _useState12[1];
-    var _useState13 = (0, _react.useState)(""), _useState14 = _slicedToArray(_useState13, 2), emailError = _useState14[0], setEmailError = _useState14[1]; // Validate user input
-    var validate = function validate() {
-        var isReq = true;
-        if (!username) {
-            setUsernameError("Username is required");
-            isReq = false;
-        } else if (username.length < 4) {
-            setUsernameError("Username must be 5 characters long");
-            isReq = false;
-        }
-        if (!password) {
-            setPasswordError("Password is required");
-            isReq = false;
-        } else if (username.length < 4) {
-            setPasswordError("Password must be 5 characters long");
-            isReq = false;
-        }
-        if (!email) {
-            setEmailError("Add Email");
-            isReq = false;
-        } else if (email.indexOf("@") === -1) {
-            setEmail("Email must be a valid email address");
-            isReq = false;
-        }
-        return isReq;
-    };
-    var handleRegister = function handleRegister(e) {
-        e.preventDefault();
-        console.log(username, password, email, birthday);
-        /* Send a request to the server for authentication
-       then call props on registerd user (username) */ var isReq = validate();
-        if (isReq) _axios["default"].post("https://movie-api-21197.herokuapp.com/users", {
-            Username: username,
-            Password: password,
-            Email: email,
-            Birthday: birthday
-        }).then(function(response) {
-            var data = response.data;
-            console.log(data);
-            alert("Successfully registreation. You can now precced to login.");
-            window.open("/", "_self"); // The Second argument '_self' is necessary so that the page will open inthe current tab.
-        })["catch"](function(response) {
-            console.error(response);
-            alert("ERROR user registering");
-        });
-    };
-    return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, {
-        className: "container-style"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Title, null, "Create an account for free"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
-        className: "mb-3"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "text",
-        value: username,
-        onChange: function onChange(e) {
-            return setUsername(e.target.value);
-        },
-        placeholder: "Enter a username",
-        required: true
-    }), usernameErr && /*#__PURE__*/ _react["default"].createElement("p", null, usernameErr)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
-        className: "mb-3"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "password",
-        value: password,
-        onChange: function onChange(e) {
-            return setPassword(e.target.value);
-        },
-        minLength: "6",
-        placeholder: "Your password must be 6 or more characters",
-        required: true
-    }), passwordErr && /*#__PURE__*/ _react["default"].createElement("p", null, passwordErr)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
-        className: "mb-3"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Date of Birth:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "date",
-        value: birthday,
-        onChange: function onChange(e) {
-            return setBirthday(e.target.value);
-        }
-    })), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
-        className: "mb-3"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Email:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "email",
-        value: email,
-        onChange: function onChange(e) {
-            return setEmail(e.target.value);
-        },
-        placeholder: "Enter a valid Email address",
-        required: true
-    }), emailErr && /*#__PURE__*/ _react["default"].createElement("p", null, emailErr)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
-        variant: "warning",
-        type: "submit",
-        onClick: handleRegister
-    }, "Sign Up"))))))));
-}
-_c = RegistrationView;
-RegistrationView.propTypes = {
-    onRegistration: _propTypes["default"].func.isRequired
-};
-var _c;
-$RefreshReg$(_c, "RegistrationView");
-
-  $parcel$ReactRefreshHelpers$f521.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","axios":"jo6P5","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./register-view.scss":"8il1C"}],"8il1C":[function() {},{}],"divrl":[function(require,module,exports) {
+},{"react":"21dqq","./profile-view.scss":"eyKYH","prop-types":"7wKI2","react-bootstrap":"3AD9A","axios":"jo6P5","react-router-dom":"fdOAw","../movie-card/movie-card":"bwuIu","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eyKYH":[function() {},{}],"divrl":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8284 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
