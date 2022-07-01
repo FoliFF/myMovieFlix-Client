@@ -41,10 +41,6 @@
 
 
 
-.navbar-container, .navbar-elements__style {
-  background-color: #fff;
-}
-
 .card-title {
   color: #0d1b2a !important;
   font-size: 18px !important;
@@ -58,6 +54,10 @@
 .movie-container {
   min-height: 80vh;
   position: relative;
+}
+
+.navbar-container, .navbar-elements__style {
+  background-color: #fff;
 }
 
 .container {
