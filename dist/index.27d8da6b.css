@@ -2,6 +2,10 @@
   margin: 20px;
 }
 
+.container-style {
+  padding-top: 50px;
+}
+
 .card-style {
   margin: 20px;
 }
@@ -23,25 +27,6 @@
   margin: 20px;
 }
 
-.card-title {
-  color: #0d1b2a !important;
-  font-size: 18px !important;
-  font-weight: 700 !important;
-}
-
-.movie-description {
-  color: #0d1b2a;
-}
-
-.movie-container {
-  min-height: 80vh;
-  position: relative;
-}
-
-.container-style {
-  padding-top: 50px;
-}
-
 .directorCard {
   margin: 30px;
 }
@@ -58,6 +43,21 @@
 
 .navbar-container, .navbar-elements__style {
   background-color: #fff;
+}
+
+.card-title {
+  color: #0d1b2a !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+
+.movie-description {
+  color: #0d1b2a;
+}
+
+.movie-container {
+  min-height: 80vh;
+  position: relative;
 }
 
 .container {
