@@ -1,17 +1,7 @@
-.main-cont {
-  min-height: 80vh;
-  position: relative;
-}
+$backgroundColor: #1A1E23;
+$textColor: #FFFFFF;
+$elementsColor: #ffc107;
 
-.card-body--register {
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
-}
-.form-label {
-  font-weight: 700;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.container-style {
+  padding-top: 50px;
 }

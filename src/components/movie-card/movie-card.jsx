@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import "./movie-card.scss";
+import './movie-card.scss';
 
 export class MovieCard extends React.Component {
     render() {
@@ -13,7 +13,7 @@ export class MovieCard extends React.Component {
                     className="movieCard-img"
                     variant="top"
                     src={movie.ImagePath}
-                    crossOrigin="true"
+                    crossOrigin="anonymous"
                 />
                 <Card.Body>
                     <Card.Title className="cardTitle">{movie.Title}</Card.Title>
@@ -21,7 +21,7 @@ export class MovieCard extends React.Component {
                         {movie.Description.slice(0, 120)}
                     </Card.Text>
                     <Button
-                        className='button-style'
+                        id="card-button"
                         onClick={() => onMovieClick(movie)}
                         variant="link"
                     >
@@ -36,7 +36,6 @@ export class MovieCard extends React.Component {
 MovieCard.propTypes = {
     movie: PropTypes.shape({
         Title: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired,
         ImagePath: PropTypes.string.isRequired,
     }).isRequired,
     onMovieClick: PropTypes.func.isRequired,

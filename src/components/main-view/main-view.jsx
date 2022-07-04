@@ -8,11 +8,13 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
+import { NavbarView } from '../navbar-view/navbar-view';
 
 import { Row, Col, Navbar, Nav, Container } from 'react-bootstrap';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import "./main-view.scss";
+
 
 export class MainView extends React.Component {
 
@@ -21,9 +23,8 @@ export class MainView extends React.Component {
         //Initial state is set to null.
         this.state = {
             movies: [],
-            selectedMovie: null,
             user: null,
-            isRegistered: null
+            selectedMovie: null,
         }
     }
 
@@ -41,6 +42,12 @@ export class MainView extends React.Component {
             this.getMovies(accessToken);
         }
     }
+    /*When a movie is clicked, this function is called and updates the state of the `selectedMovie` property to that movie*/
+    setSelectedMovie(newSelectedMovie) {
+        this.setState({
+            selectedMovie: newSelectedMovie,
+        });
+    }
 
     getMovies(token) {
         axios.get('https://movie-api-21197.herokuapp.com/movies', {
@@ -52,6 +59,7 @@ export class MainView extends React.Component {
         }).catch(function (error) {
             console.log(error);
         });
+
     }
 
     /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
@@ -64,6 +72,7 @@ export class MainView extends React.Component {
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
+        //localStorage.clear();
     }
 
     onLoggedOut() {
@@ -74,36 +83,20 @@ export class MainView extends React.Component {
         });
     }
 
-    //For a successfully registered user.
-    onRegistration(isRegistered) {
-        this.setState({
-            isRegistered
-        });
-    }
-
-    /* When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie */
-    setSelectedMovie(movie) {
-        this.setState({
-            selectedMovie: movie
-        });
-    }
-
     render() {
-        const { movies, selectedMovie, user, isRegistered } = this.state;
-        if (!user) {
-            return (<LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />);
-        }
+        const { movies, selectedMovie, user } = this.state;
 
-        if (!isRegistered) {
-            return (<RegistrationView onRegistration={(isRegistered) => this.onRegistration(isRegistered)} />);
-        }
-
-
-
-        if (movies.length === 0) { return <div className="main-view" />; }
+        if (!user) return <Row>
+            <Col>
+                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
+        </Row>
+        if (movies.length === 0) return <div className="main-view" />;
 
         return (
-            <div className="main-view justify-content-md-center">
+
+
+            /*
                 <Navbar className="mb-5" id="techFlixNav" bg="navColor" variant="dark" expand="lg" sticky="top">
                     <Container fluid>
                         <Navbar.Brand id="appName" href="#home">myMovieFlix</Navbar.Brand>
@@ -121,9 +114,35 @@ export class MainView extends React.Component {
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
-                <Container>
-                    {selectedMovie ? (
-                        <Row className="justify-content-lg-center">
+            */
+            <div className="main-view justify-content-md-center">
+                <Router>
+                    <Navbar
+                        className="mb-5"
+                        id="techFlixNav"
+                        bg="dark"
+                        variant="dark"
+                        expand="lg"
+                        sticky="top"
+                    >
+                        <Navbar.Brand id="appName" href="#home">
+                            techFlix
+                        </Navbar.Brand>
+                        <Navbar.Toggle className="toggle" />
+                        <Navbar.Collapse className="justify-content-end toggle">
+                            <Nav.Link id="link" href="">
+                                MyPage
+                            </Nav.Link>
+                            <Nav.Link id="link" href="">
+                                Movies
+                            </Nav.Link>
+                            <Nav.Link id="link" href="">
+                                Logout
+                            </Nav.Link>
+                        </Navbar.Collapse>
+                    </Navbar>
+                    <Row className="main-view justify-content-md-center">
+                        {selectedMovie ? (
                             <Col md={9}>
                                 <MovieView
                                     movie={selectedMovie}
@@ -132,10 +151,8 @@ export class MainView extends React.Component {
                                     }}
                                 />
                             </Col>
-                        </Row>
-                    ) : (
-                        <Row className="justify-content-lg-center">
-                            {movies.map((movie) => (
+                        ) : (
+                            movies.map((movie) => (
                                 <Col md={4}>
                                     <MovieCard
                                         key={movie._id}
@@ -146,10 +163,9 @@ export class MainView extends React.Component {
                                     />
                                 </Col>
                             ))
-                            }
-                        </Row>)}
-
-                </Container>
+                        )}
+                    </Row>
+                </Router>
             </div>
         );
     }

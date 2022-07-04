@@ -2,53 +2,44 @@
   margin: 20px;
 }
 
-.main-cont {
-  min-height: 80vh;
-  position: relative;
+.container-style {
+  padding-top: 50px;
 }
 
-.card-body--register {
-  box-shadow: 5px 5px 5px #0003;
+.card-style {
+  margin: 20px;
 }
 
-.form-label {
-  font-weight: 700;
+.image-style {
+  width: 286px;
+  height: 400px;
 }
 
-.container {
-  justify-content: center;
-  align-items: center;
-  display: flex;
+.button-style {
+  margin-left: 180px;
 }
 
-.card:hover {
-  box-shadow: 5px 1px 20px 1px #00000041 !important;
+.add-list__button {
+  margin-left: 10px;
 }
 
-.card-body {
-  flex-wrap: wrap;
-  padding: 1.5rem !important;
+.movie-view__card {
+  margin: 20px;
 }
 
-.movie-description {
-  text-align: center;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 70ch;
-  overflow: hidden;
+.directorCard {
+  margin: 30px;
 }
 
-h1, h2, h3, h4, h5, p {
-  color: #0d1b2a !important;
+.directorTitle {
+  color: #000;
 }
 
-.card.badge {
-  color: #0d1b2a;
+.genreCard {
+  margin: 30px;
 }
 
-.card-movie--title {
-  font-weight: 700 !important;
-}
+
 
 .card-title {
   color: #0d1b2a !important;
@@ -63,6 +54,10 @@ h1, h2, h3, h4, h5, p {
 .movie-container {
   min-height: 80vh;
   position: relative;
+}
+
+.navbar-container, .navbar-elements__style {
+  background-color: #fff;
 }
 
 .container {
