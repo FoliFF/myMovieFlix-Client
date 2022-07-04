@@ -2,6 +2,25 @@
   margin: 20px;
 }
 
+.main-cont {
+  min-height: 80vh;
+  position: relative;
+}
+
+.card-body--register {
+  box-shadow: 5px 5px 5px #0003;
+}
+
+.form-label {
+  font-weight: 700;
+}
+
+.container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
 .card:hover {
   box-shadow: 5px 1px 20px 1px #00000041 !important;
 }
@@ -44,25 +63,6 @@ h1, h2, h3, h4, h5, p {
 .movie-container {
   min-height: 80vh;
   position: relative;
-}
-
-.main-cont {
-  min-height: 80vh;
-  position: relative;
-}
-
-.card-body--register {
-  box-shadow: 5px 5px 5px #0003;
-}
-
-.form-label {
-  font-weight: 700;
-}
-
-.container {
-  justify-content: center;
-  align-items: center;
-  display: flex;
 }
 
 .container {
