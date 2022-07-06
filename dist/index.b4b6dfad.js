@@ -26378,7 +26378,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             key: "getMovies",
             value: function getMovies(token) {
                 var _this2 = this;
-                _axios["default"].get("/movies", {
+                _axios["default"].get("https://movie-api-21197.herokuapp.com/movies", {
                     headers: {
                         Authorization: "Bearer ".concat(token)
                     }
