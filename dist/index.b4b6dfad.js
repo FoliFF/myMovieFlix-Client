@@ -26378,7 +26378,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             key: "getMovies",
             value: function getMovies(token) {
                 var _this2 = this;
-                _axios["default"].get("https://movie-api-21197.herokuapp.com/movies", {
+                _axios["default"].get("/movies", {
                     headers: {
                         Authorization: "Bearer ".concat(token)
                     }
@@ -26390,7 +26390,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                     });
                 })["catch"](function(error) {
                     console.log(error);
-                });
+                }); //localStorage.clear();
             }
         },
         {
@@ -26412,7 +26412,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 localStorage.removeItem("user");
                 this.setState({
                     user: null
-                });
+                }); //localStorage.clear();
             }
         },
         {
@@ -26450,7 +26450,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                     className: "main-view justify-content-md-center"
                 }, /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar, {
                     className: "mb-5",
-                    id: "techFlixNav",
+                    id: "myMovieFlixNav",
                     bg: "dark",
                     variant: "dark",
                     expand: "lg",
@@ -26458,7 +26458,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Brand, {
                     id: "appName",
                     href: "#home"
-                }, "techFlix"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
+                }, "myMovieFlix"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
                     className: "toggle"
                 }), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Collapse, {
                     className: "justify-content-end toggle"

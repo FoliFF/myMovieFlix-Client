@@ -20,6 +20,7 @@
   "bugs": {
     "url": "https://github.com/FoliFF/myMovieFlix-Client/issues"
   },
+  "proxy": "https://movie-api-21197.herokuapp.com",
   "homepage": "https://github.com/FoliFF/myMovieFlix-Client#readme",
   "dependencies": {
     "axios": "^0.27.2",

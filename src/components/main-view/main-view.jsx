@@ -50,7 +50,7 @@ export class MainView extends React.Component {
     }
 
     getMovies(token) {
-        axios.get('https://movie-api-21197.herokuapp.com/movies', {
+        axios.get('/movies', {
             headers: { Authorization: `Bearer ${token}` }
         }).then(response => {
             // Assign the result to the state
@@ -59,7 +59,7 @@ export class MainView extends React.Component {
         }).catch(function (error) {
             console.log(error);
         });
-
+        //localStorage.clear();
     }
 
     /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
@@ -81,6 +81,7 @@ export class MainView extends React.Component {
         this.setState({
             user: null
         });
+        //localStorage.clear();
     }
 
     render() {
@@ -119,14 +120,14 @@ export class MainView extends React.Component {
                 <Router>
                     <Navbar
                         className="mb-5"
-                        id="techFlixNav"
+                        id="myMovieFlixNav"
                         bg="dark"
                         variant="dark"
                         expand="lg"
                         sticky="top"
                     >
                         <Navbar.Brand id="appName" href="#home">
-                            techFlix
+                            myMovieFlix
                         </Navbar.Brand>
                         <Navbar.Toggle className="toggle" />
                         <Navbar.Collapse className="justify-content-end toggle">
