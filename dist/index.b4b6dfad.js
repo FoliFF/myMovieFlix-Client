@@ -26390,7 +26390,8 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                     });
                 })["catch"](function(error) {
                     console.log(error);
-                }); //localStorage.clear();
+                });
+                localStorage.clear();
             }
         },
         {
@@ -26402,7 +26403,8 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 });
                 localStorage.setItem("token", authData.token);
                 localStorage.setItem("user", authData.user.Username);
-                this.getMovies(authData.token); //localStorage.clear();
+                this.getMovies(authData.token);
+                localStorage.clear();
             }
         },
         {
@@ -26412,7 +26414,8 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 localStorage.removeItem("user");
                 this.setState({
                     user: null
-                }); //localStorage.clear();
+                });
+                localStorage.clear();
             }
         },
         {
@@ -26428,25 +26431,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
                     className: "main-view"
                 });
-                return(/*#__PURE__*/ /*
-            <Navbar className="mb-5" id="techFlixNav" bg="navColor" variant="dark" expand="lg" sticky="top">
-                <Container fluid>
-                    <Navbar.Brand id="appName" href="#home">myMovieFlix</Navbar.Brand>
-                    <Navbar.Toggle className="toggle" />
-                    <Navbar.Collapse className="justify-content-end toggle">
-                        <Nav.Link id="link" href="">
-                            MyPage
-                        </Nav.Link>
-                        <Nav.Link id="link" href="">
-                            Movies
-                        </Nav.Link>
-                        <Nav.Link id="link" href="">
-                            Logout
-                        </Nav.Link>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
-        */ _react["default"].createElement("div", {
+                return /*#__PURE__*/ _react["default"].createElement("div", {
                     className: "main-view justify-content-md-center"
                 }, /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar, {
                     className: "mb-5",
@@ -26490,7 +26475,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                             _this3.setSelectedMovie(movie);
                         }
                     }));
-                })))));
+                }))));
             }
         }
     ]);

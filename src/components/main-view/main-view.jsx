@@ -59,7 +59,7 @@ export class MainView extends React.Component {
         }).catch(function (error) {
             console.log(error);
         });
-        //localStorage.clear();
+        localStorage.clear();
     }
 
     /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
@@ -72,7 +72,7 @@ export class MainView extends React.Component {
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
-        //localStorage.clear();
+        localStorage.clear();
     }
 
     onLoggedOut() {
@@ -81,7 +81,7 @@ export class MainView extends React.Component {
         this.setState({
             user: null
         });
-        //localStorage.clear();
+        localStorage.clear();
     }
 
     render() {
@@ -95,27 +95,6 @@ export class MainView extends React.Component {
         if (movies.length === 0) return <div className="main-view" />;
 
         return (
-
-
-            /*
-                <Navbar className="mb-5" id="techFlixNav" bg="navColor" variant="dark" expand="lg" sticky="top">
-                    <Container fluid>
-                        <Navbar.Brand id="appName" href="#home">myMovieFlix</Navbar.Brand>
-                        <Navbar.Toggle className="toggle" />
-                        <Navbar.Collapse className="justify-content-end toggle">
-                            <Nav.Link id="link" href="">
-                                MyPage
-                            </Nav.Link>
-                            <Nav.Link id="link" href="">
-                                Movies
-                            </Nav.Link>
-                            <Nav.Link id="link" href="">
-                                Logout
-                            </Nav.Link>
-                        </Navbar.Collapse>
-                    </Container>
-                </Navbar>
-            */
             <div className="main-view justify-content-md-center">
                 <Router>
                     <Navbar
