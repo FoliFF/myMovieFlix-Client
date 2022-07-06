@@ -26390,8 +26390,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                     });
                 })["catch"](function(error) {
                     console.log(error);
-                });
-                localStorage.clear();
+                }); //localStorage.clear();
             }
         },
         {
@@ -26403,8 +26402,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 });
                 localStorage.setItem("token", authData.token);
                 localStorage.setItem("user", authData.user.Username);
-                this.getMovies(authData.token);
-                localStorage.clear();
+                this.getMovies(authData.token); //localStorage.clear();
             }
         },
         {
@@ -26414,8 +26412,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 localStorage.removeItem("user");
                 this.setState({
                     user: null
-                });
-                localStorage.clear();
+                }); //localStorage.clear();
             }
         },
         {
@@ -26431,51 +26428,142 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
                     className: "main-view"
                 });
-                return /*#__PURE__*/ _react["default"].createElement("div", {
-                    className: "main-view justify-content-md-center"
-                }, /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar, {
-                    className: "mb-5",
-                    id: "myMovieFlixNav",
-                    bg: "dark",
-                    variant: "dark",
-                    expand: "lg",
-                    sticky: "top"
-                }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Brand, {
-                    id: "appName",
-                    href: "#home"
-                }, "myMovieFlix"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
-                    className: "toggle"
-                }), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Collapse, {
-                    className: "justify-content-end toggle"
-                }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
-                    id: "link",
-                    href: ""
-                }, "MyPage"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
-                    id: "link",
-                    href: ""
-                }, "Movies"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
-                    id: "link",
-                    href: ""
-                }, "Logout"))), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
-                    className: "main-view justify-content-md-center"
-                }, selectedMovie ? /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
-                    md: 9
-                }, /*#__PURE__*/ _react["default"].createElement(_movieView.MovieView, {
-                    movie: selectedMovie,
-                    onBackClick: function onBackClick(newSelectedMovie) {
-                        _this3.setSelectedMovie(newSelectedMovie);
+                return /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/ _react["default"].createElement(_navbarView.NavbarView, {
+                    user: user1
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                    path: "/movies/:movieID",
+                    render: function render(_ref) {
+                        var match = _ref.match;
+                        return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
+                            md: 8
+                        }, /*#__PURE__*/ _react["default"].createElement(_movieView.MovieView, {
+                            movie: movies.find(function(m) {
+                                return m._id === match.params.movieId;
+                            })
+                        }));
                     }
-                })) : movies.map(function(movie1) {
-                    return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
-                        md: 4
-                    }, /*#__PURE__*/ _react["default"].createElement(_movieCard.MovieCard, {
-                        key: movie1._id,
-                        movie: movie1,
-                        onMovieClick: function onMovieClick(movie) {
-                            _this3.setSelectedMovie(movie);
-                        }
-                    }));
-                }))));
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                    exact: true,
+                    path: "/",
+                    render: function render() {
+                        if (!user1) return /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
+                            onLoggedIn: function onLoggedIn(user) {
+                                return _this3.onLoggedIn(user);
+                            }
+                        });
+                        if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
+                            className: "main-view"
+                        });
+                        return movies.map(function(m) {
+                            return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
+                                md: 10,
+                                key: m._id
+                            }, /*#__PURE__*/ _react["default"].createElement(_movieCard.MovieCard, {
+                                movie: m
+                            }));
+                        });
+                    }
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                    path: "/register",
+                    render: function render() {
+                        if (user1) return /*#__PURE__*/ _react["default"].createElement(Redirect, {
+                            to: "/"
+                        });
+                        return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_registerView.RegistrationView, null));
+                    }
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                    exact: true,
+                    path: "/movies/:movieId",
+                    render: function render(_ref2) {
+                        var match = _ref2.match, history = _ref2.history;
+                        if (!user1) return /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
+                            OnLoggedIn: function OnLoggedIn(user) {
+                                return _this3.onLoggedIn(user);
+                            }
+                        });
+                        if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
+                            className: "main-view"
+                        });
+                        return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
+                            md: 8
+                        }, /*#__PURE__*/ _react["default"].createElement(_movieView.MovieView, {
+                            movie: movies.find(function(m) {
+                                return m._Id === match.params.MovieId;
+                            }),
+                            onBackClick: function onBackClick() {
+                                return history.goBack();
+                            }
+                        }));
+                    }
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                    exact: true,
+                    path: "/genres/:name",
+                    render: function render(_ref3) {
+                        var match = _ref3.match;
+                        if (!user1) return /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
+                            onLoggedIn: function onLoggedIn(user) {
+                                return _this3.onLoggedIn(user);
+                            }
+                        });
+                        if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
+                            className: "main-view"
+                        });
+                        return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
+                            md: 8
+                        }, /*#__PURE__*/ _react["default"].createElement(_genreView.GenreView, {
+                            genre: movies.find(function(m) {
+                                return m.Genre.Name === match.params.name;
+                            }).Genre,
+                            onBackClick: function onBackClick() {
+                                return history.goBack();
+                            }
+                        }));
+                    }
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                    exact: true,
+                    path: "/directors/:name",
+                    render: function render(_ref4) {
+                        var match = _ref4.match, history = _ref4.history;
+                        if (!user1) return /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
+                            OnLoggedIn: function OnLoggedIn(user) {
+                                return _this3.onLoggedIn(user);
+                            }
+                        });
+                        if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
+                            className: "main-view"
+                        });
+                        return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
+                            md: 8
+                        }, /*#__PURE__*/ _react["default"].createElement(_directorView.DirectorView, {
+                            director: movies.find(function(m) {
+                                return m.Director.Name === match.params.name;
+                            }).Director,
+                            onBackClick: function onBackClick() {
+                                return history.goBack();
+                            }
+                        }));
+                    }
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                    path: "/users/:username",
+                    render: function render(_ref5) {
+                        var history = _ref5.history, match = _ref5.match;
+                        if (!user1) return /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
+                            onLoggedIn: function onLoggedIn(user) {
+                                return _this3.onLoggedIn(user);
+                            }
+                        });
+                        if (movies.length === 0) return /*#__PURE__*/ _react["default"].createElement("div", {
+                            className: "main-view"
+                        });
+                        return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
+                            md: 10
+                        }, /*#__PURE__*/ _react["default"].createElement(_profileView.ProfileView, {
+                            history: history,
+                            movies: movies,
+                            user: user1 === match.params.username
+                        }));
+                    }
+                }));
             }
         }
     ]);
@@ -43437,7 +43525,7 @@ function RegistrationView(porps) {
         },
         placeholder: "Enter a username",
         required: true
-    }), usernameErr && /*#__PURE__*/ _react["default"].createElement("p", null, usernameErr)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
+    }), usernameError && /*#__PURE__*/ _react["default"].createElement("p", null, usernameError)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
         className: "mb-3"
     }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "password",
@@ -43448,7 +43536,7 @@ function RegistrationView(porps) {
         minLength: "6",
         placeholder: "Your password must be 6 or more characters",
         required: true
-    }), passwordErr && /*#__PURE__*/ _react["default"].createElement("p", null, passwordErr)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
+    }), passwordError && /*#__PURE__*/ _react["default"].createElement("p", null, passwordError)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Group, {
         className: "mb-3"
     }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Label, null, "Date of Birth:"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "date",
@@ -43466,7 +43554,7 @@ function RegistrationView(porps) {
         },
         placeholder: "Enter a valid Email address",
         required: true
-    }), emailErr && /*#__PURE__*/ _react["default"].createElement("p", null, emailErr)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
+    }), emailError && /*#__PURE__*/ _react["default"].createElement("p", null, emailError)), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
         variant: "warning",
         type: "submit",
         onClick: handleRegister
@@ -46154,10 +46242,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.NavbarView = NavbarView;
+exports["default"] = void 0;
 var _react = _interopRequireDefault(require("react"));
 require("./navbar-view.scss");
 var _reactBootstrap = require("react-bootstrap");
-var _reactRouterDom = require("react-router-dom");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         "default": obj
@@ -46169,41 +46257,35 @@ function NavbarView(_ref) {
         localStorage.clear();
         window.open("/", "_self");
     };
-    var isAuth = function isAuth() {
-        if (typeof window == "undefined") return false;
-        if (localStorage.getItem("token")) return localStorage.getItem("token");
-        else return false;
-    };
-    return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar, {
-        bg: "light",
+    return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar, {
+        bg: "",
         expand: "lg"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, {
-        className: "navbar-container"
-    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Brand, {
-        as: _reactRouterDom.Link,
-        to: "/",
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Brand, {
         href: "#home"
-    }, "MyFlix-App"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav, {
-        className: "me-auto navbar-elements__style"
-    }, isAuth() && /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
-        as: _reactRouterDom.Link,
-        to: "/"
-    }, "Movies"), isAuth() && /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
-        as: _reactRouterDom.Link,
-        to: "/users/".concat(user)
-    }, "Profile"), isAuth() && /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
-        onClick: function onClick() {
-            return onLoggedOut();
-        }
-    }, "Logout"), !isAuth() && /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
-        as: _reactRouterDom.Link,
-        to: "/"
-    }, "Login"), !isAuth() && /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
-        as: _reactRouterDom.Link,
-        to: "/register"
-    }, "Sign Up")))));
+    }, "myFlix"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
+        "aria-controls": "basic-navbar-nav"
+    }), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Collapse, {
+        id: "basic-navbar-nav"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav, {
+        className: "me-auto"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
+        href: "#home"
+    }, "Home"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Nav.Link, {
+        href: "#link"
+    }, "Movies"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.NavDropdown, {
+        title: "",
+        id: "basic-nav-dropdown"
+    }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.NavDropdown.Item, {
+        href: "#action/3.1"
+    }, "Watchlist"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.NavDropdown.Item, {
+        href: "#action/3.2"
+    }, "Profile"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.NavDropdown.Divider, null), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.NavDropdown.Item, {
+        href: "#action/3.4"
+    }, "Log out"))))));
 }
 _c = NavbarView;
+var _default = NavbarView;
+exports["default"] = _default;
 var _c;
 $RefreshReg$(_c, "NavbarView");
 
@@ -46212,7 +46294,7 @@ $RefreshReg$(_c, "NavbarView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","./navbar-view.scss":"cYTZj","react-bootstrap":"3AD9A","react-router-dom":"fdOAw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"cYTZj":[function() {},{}],"lJZlQ":[function() {},{}],"lDbex":[function(require,module,exports) {
+},{"react":"21dqq","./navbar-view.scss":"cYTZj","react-bootstrap":"3AD9A","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"cYTZj":[function() {},{}],"lJZlQ":[function() {},{}],"lDbex":[function(require,module,exports) {
 /*! For license information please see react-bootstrap.min.js.LICENSE.txt */ !function(e, t) {
     module.exports = t(require("react"), require("react-dom"));
 }(self, (e1, t1)=>(()=>{

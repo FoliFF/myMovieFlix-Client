@@ -86,7 +86,7 @@ export function RegistrationView(porps) {
                                             required
                                         />
                                         {/* code added here to display validation error */}
-                                        {usernameErr && <p>{usernameErr}</p>}
+                                        {usernameError && <p>{usernameError}</p>}
                                     </Form.Group>
 
                                     <Form.Group className="mb-3">
@@ -100,7 +100,7 @@ export function RegistrationView(porps) {
                                             required
                                         />
                                         {/* code added here to display validation error */}
-                                        {passwordErr && <p>{passwordErr}</p>}
+                                        {passwordError && <p>{passwordError}</p>}
                                     </Form.Group>
 
                                     <Form.Group className="mb-3">
@@ -122,7 +122,7 @@ export function RegistrationView(porps) {
                                             required
                                         />
                                         {/* code added here to display validation error */}
-                                        {emailErr && <p>{emailErr}</p>}
+                                        {emailError && <p>{emailError}</p>}
                                     </Form.Group>
 
                                     <Button variant='warning'

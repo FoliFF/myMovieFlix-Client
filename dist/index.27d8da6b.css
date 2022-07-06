@@ -56,8 +56,8 @@
 
 
 
-.navbar-container, .navbar-elements__style {
-  background-color: #fff;
+.primary {
+  color: red;
 }
 
 .container {

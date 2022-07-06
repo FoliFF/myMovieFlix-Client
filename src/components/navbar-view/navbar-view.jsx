@@ -1,60 +1,41 @@
 import React from "react";
-import './navbar-view.scss';
-import { Navbar, Container, Nav, Button, Offcanvas, NavDropdown, Form, FormControl } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import "./navbar-view.scss";
+
+import {
+    Navbar, Container, Nav, NavDropdown,
+} from "react-bootstrap";
 
 export function NavbarView({ user }) {
-
     const onLoggedOut = () => {
         localStorage.clear();
         window.open("/", "_self");
-    }
-
-    const isAuth = () => {
-        if (typeof window == "undefined") {
-            return false
-        }
-        if (localStorage.getItem("token")) {
-            return localStorage.getItem("token");
-        } else {
-            return false;
-        }
     };
 
     return (
-        <Container>
-            <Navbar bg="light" expand="lg">
-                <Container className="navbar-container">
-                    <Navbar.Brand as={Link} to={"/"} href="#home">MyFlix-App</Navbar.Brand>
-
-                    <Nav className="me-auto navbar-elements__style">
-
-                        {isAuth() && (
-                            <Nav.Link as={Link} to={`/`}>Movies</Nav.Link>
-                        )}
-
-                        {isAuth() && (
-                            <Nav.Link as={Link} to={`/users/${user}`}>Profile</Nav.Link>
-                        )}
-
-                        {isAuth() && (
-                            <Nav.Link onClick={() => onLoggedOut()}>Logout</Nav.Link>
-                        )}
-
-                        {!isAuth() && (
-                            <Nav.Link as={Link} to={`/`}>Login</Nav.Link>
-                        )}
-
-                        {!isAuth() && (
-                            <Nav.Link as={Link} to={`/register`}>Sign Up</Nav.Link>
-                        )}
-
-
+        <Navbar bg="" expand="lg">
+            <Container>
+                <Navbar.Brand href="#home">myFlix</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link href="#home">Home</Nav.Link>
+                        <Nav.Link href="#link">Movies</Nav.Link>
+                        <NavDropdown title="" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="#action/3.1">Watchlist</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">
+                                Profile
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action/3.4">
+                                Log out
+                            </NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
 
-                </Container>
-            </Navbar>
-        </Container>
-
-    )
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+    );
 }
+
+export default NavbarView;
