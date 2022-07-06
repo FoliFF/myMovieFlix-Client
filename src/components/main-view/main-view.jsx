@@ -97,7 +97,7 @@ export class MainView extends React.Component {
         return (
             <Router>
                 <NavbarView user={user} />
-                <Routes
+                <Route
                     path="/movies/:movieID"
                     render={({ match }) => {
                         return (
@@ -109,7 +109,7 @@ export class MainView extends React.Component {
                         );
                     }}
                 />
-                <Routes
+                <Route
                     exact
                     path="/"
                     render={() => {
@@ -123,7 +123,7 @@ export class MainView extends React.Component {
                         ));
                     }}
                 />
-                <Routes
+                <Route
                     path="/register"
                     render={() => {
                         if (user) return <Redirect to="/" />;
@@ -135,7 +135,7 @@ export class MainView extends React.Component {
                     }}
                 />
 
-                <Routes
+                <Route
                     exact
                     path="/movies/:movieId"
                     render={({ match, history }) => {
@@ -152,7 +152,7 @@ export class MainView extends React.Component {
                         );
                     }}
                 />
-                <Routes
+                <Route
                     exact
                     path="/genres/:name"
                     render={({ match }) => {
@@ -171,7 +171,7 @@ export class MainView extends React.Component {
                         );
                     }}
                 />
-                <Routes
+                <Route
                     exact
                     path="/directors/:name"
                     render={({ match, history }) => {
@@ -191,7 +191,7 @@ export class MainView extends React.Component {
                         );
                     }}
                 />
-                <Routes
+                <Route
                     path="/users/:username"
                     render={({ history, match }) => {
                         if (!user)

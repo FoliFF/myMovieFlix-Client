@@ -26430,7 +26430,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 });
                 return /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/ _react["default"].createElement(_navbarView.NavbarView, {
                     user: user1
-                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
                     path: "/movies/:movieID",
                     render: function render(_ref) {
                         var match = _ref.match;
@@ -26442,7 +26442,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                             })
                         }));
                     }
-                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
                     exact: true,
                     path: "/",
                     render: function render() {
@@ -26463,7 +26463,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                             }));
                         });
                     }
-                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
                     path: "/register",
                     render: function render() {
                         if (user1) return /*#__PURE__*/ _react["default"].createElement(Redirect, {
@@ -26471,7 +26471,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                         });
                         return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_registerView.RegistrationView, null));
                     }
-                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
                     exact: true,
                     path: "/movies/:movieId",
                     render: function render(_ref2) {
@@ -26495,7 +26495,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                             }
                         }));
                     }
-                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
                     exact: true,
                     path: "/genres/:name",
                     render: function render(_ref3) {
@@ -26519,7 +26519,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                             }
                         }));
                     }
-                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
                     exact: true,
                     path: "/directors/:name",
                     render: function render(_ref4) {
@@ -26543,7 +26543,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                             }
                         }));
                     }
-                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Routes, {
+                }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
                     path: "/users/:username",
                     render: function render(_ref5) {
                         var history = _ref5.history, match = _ref5.match;
