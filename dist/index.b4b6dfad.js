@@ -26367,14 +26367,6 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             }
         },
         {
-            key: "setSelectedMovie",
-            value: function setSelectedMovie(newSelectedMovie) {
-                this.setState({
-                    selectedMovie: newSelectedMovie
-                });
-            }
-        },
-        {
             key: "getMovies",
             value: function getMovies(token) {
                 var _this2 = this;
@@ -26419,7 +26411,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             key: "render",
             value: function render() {
                 var _this3 = this;
-                var _this$state = this.state, movies = _this$state.movies, selectedMovie = _this$state.selectedMovie, user1 = _this$state.user;
+                var _this$state = this.state, movies = _this$state.movies, user1 = _this$state.user;
                 if (!user1) return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_loginView.LoginView, {
                     onLoggedIn: function onLoggedIn(user) {
                         return _this3.onLoggedIn(user);
@@ -26569,16 +26561,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
     ]);
     return MainView1;
 }(_react["default"].Component);
-/*
-<BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="expenses" element={<Expenses />} />
-      <Route path="invoices" element={<Invoices />} />
-    </Routes>
-  </BrowserRouter>
-
-*/ exports.MainView = MainView;
+exports.MainView = MainView;
 
   $parcel$ReactRefreshHelpers$f7a6.postlude(module);
 } finally {

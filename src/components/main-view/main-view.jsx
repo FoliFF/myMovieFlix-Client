@@ -33,6 +33,7 @@ export class MainView extends React.Component {
      * Username=Alice1
      * Password=new2123
      */
+
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
@@ -41,12 +42,6 @@ export class MainView extends React.Component {
             });
             this.getMovies(accessToken);
         }
-    }
-    /*When a movie is clicked, this function is called and updates the state of the `selectedMovie` property to that movie*/
-    setSelectedMovie(newSelectedMovie) {
-        this.setState({
-            selectedMovie: newSelectedMovie,
-        });
     }
 
     getMovies(token) {
@@ -85,7 +80,7 @@ export class MainView extends React.Component {
     }
 
     render() {
-        const { movies, selectedMovie, user } = this.state;
+        const { movies, user } = this.state;
 
         if (!user) return <Row>
             <Col>
@@ -212,14 +207,3 @@ export class MainView extends React.Component {
         );
     }
 }
-
-/*
-<BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="expenses" element={<Expenses />} />
-      <Route path="invoices" element={<Invoices />} />
-    </Routes>
-  </BrowserRouter>
-
-*/
