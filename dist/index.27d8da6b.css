@@ -33,15 +33,6 @@
   font-weight: 700 !important;
 }
 
-.movie-description {
-  color: #0d1b2a;
-}
-
-.movie-container {
-  min-height: 80vh;
-  position: relative;
-}
-
 .directorCard {
   margin: 30px;
 }
@@ -56,8 +47,8 @@
 
 
 
-.navbar-container, .navbar-elements__style {
-  background-color: #fff;
+.primary {
+  color: red;
 }
 
 .container {
