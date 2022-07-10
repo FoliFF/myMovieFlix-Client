@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import { Button, Card, CardGroup, Container, Col, Row, Navbar, Nav } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import "./login-view.scss";
