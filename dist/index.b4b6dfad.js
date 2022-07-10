@@ -45967,11 +45967,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.MovieView = void 0;
 var _react = _interopRequireDefault(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-require("./movie-view.scss");
 var _reactBootstrap = require("react-bootstrap");
-var _reactRouterDom = require("react-router-dom");
-var _axios = _interopRequireDefault(require("axios"));
+require("./movie-view.scss");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         "default": obj
@@ -46055,167 +46052,58 @@ function _getPrototypeOf(o2) {
     };
     return _getPrototypeOf(o2);
 }
-function _defineProperty(obj, key, value) {
-    if (key in obj) Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-    });
-    else obj[key] = value;
-    return obj;
-}
-// /users/:Username/movies/:MovieID
 var MovieView = /*#__PURE__*/ function(_React$Component) {
     _inherits(MovieView1, _React$Component);
     var _super = _createSuper(MovieView1);
-    function MovieView1(props) {
-        var _this;
+    function MovieView1() {
         _classCallCheck(this, MovieView1);
-        _this = _super.call(this, props);
-        _defineProperty(_assertThisInitialized(_this), "addFavMovie", function() {
-            var token = localStorage.getItem("token");
-            var user = localStorage.getItem("user");
-            var userFavMovies = _this.state.FavouriteMovies;
-            var isFav = userFavMovies.includes(_this.props.movie._id);
-            if (!isFav) _axios["default"].post("https://movie-api-21197.herokuapp.com/users/".concat(user, "/movies/").concat(_this.props.movie._id), {}, {
-                headers: {
-                    Authorization: "Bearer ".concat(token)
-                }
-            }).then(function(response) {
-                console.log(response.data);
-                alert("".concat(_this.props.movie.Title, " has been added to your list of movies"));
-                window.open("/movies/".concat(_this.props.movie._id), "_self");
-            })["catch"](function(e) {
-                console.log("Error");
-            });
-            else if (isFav) alert("".concat(_this.props.movie.Title, " is already present in your list of movies"));
-        });
-        _defineProperty(_assertThisInitialized(_this), "removeFavMovie", function() {
-            var token = localStorage.getItem("token");
-            var user = localStorage.getItem("user");
-            _axios["default"]["delete"]("https://movie-api-21197.herokuapp.com/users/".concat(user, "/movies/").concat(_this.props.movie._id), {
-                headers: {
-                    Authorization: "Bearer ".concat(token)
-                }
-            }).then(function(response) {
-                console.log(response.data);
-                alert("".concat(_this.props.movie.Title, " has been removed from your list of movies"));
-                window.open("/movies/".concat(_this.props.movie._id), "_self");
-            })["catch"](function(e) {
-                console.log("Error");
-            });
-        });
-        _this.state = {
-            username: null,
-            password: null,
-            email: null,
-            birthday: null,
-            FavouriteMovies: []
-        };
-        return _this;
+        return _super.apply(this, arguments);
     }
     _createClass(MovieView1, [
-        {
-            key: "getUser",
-            value: function getUser(token) {
-                var _this2 = this;
-                var user = localStorage.getItem("user");
-                _axios["default"].get("https://movie-api-21197.herokuapp.com/users/".concat(user), {
-                    headers: {
-                        Authorization: "Bearer ".concat(token)
-                    }
-                }).then(function(response) {
-                    //assign the result to the state
-                    _this2.setState({
-                        username: response.data.username,
-                        password: response.data.password,
-                        email: response.data.email,
-                        birthday: response.data.birthday,
-                        FavouriteMovies: response.data.FavouriteMovies
-                    });
-                })["catch"](function(e) {
-                    return console.log(e);
-                });
-            }
-        },
-        {
-            key: "componentDidMount",
-            value: function componentDidMount() {
-                var accessToken = localStorage.getItem("token");
-                this.getUser(accessToken);
-            } // Add Favourite movie 
-        },
         {
             key: "render",
             value: function render() {
                 var _this$props = this.props, movie = _this$props.movie, onBackClick = _this$props.onBackClick;
-                var _this$state = this.state, FavouriteMovies = _this$state.FavouriteMovies, username = _this$state.username, password = _this$state.password, email = _this$state.email, birthday = _this$state.birthday;
-                var userFavMovies = this.state.FavouriteMovies;
-                var isFav = userFavMovies.includes(this.props.movie._id);
-                return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
-                    className: "movie-view__card",
-                    style: {
-                        width: "40rem"
-                    }
+                return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, null, movie && /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
+                    id: "movie-view"
                 }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Img, {
-                    className: "movie-view__image",
+                    id: "movie-view-image",
                     variant: "top",
                     src: movie.ImagePath
                 }), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Title, {
-                    className: "title-style"
+                    id: "movie-Title",
+                    className: "movie-title"
                 }, movie.Title), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Text, {
-                    className: "text-style"
-                }, "Genre: ", movie.Genre.Name, /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Link, {
-                    to: "/genres/".concat(movie.Genre.Name)
-                }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
-                    variant: "link"
-                }, "more info"))), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Text, {
-                    className: "text-style"
-                }, "Director: ", movie.Director.Name, /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Link, {
-                    to: "/directors/".concat(movie.Director.Name)
-                }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
-                    variant: "link"
-                }, "more info"))), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Text, {
-                    className: "text-style"
-                }, movie.Description), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
-                    variant: "outline-warning",
+                    id: "movie-description",
+                    className: "movie-description"
+                }, movie.Description), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Text, {
+                    id: "movie-director",
+                    className: "movie-director"
+                }, "Director: ", movie.Director.Name), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Text, {
+                    id: "movie-genre",
+                    className: "movie-genre"
+                }, "Genre: ", movie.Genre.Name))), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
+                    id: "movie-view-button",
                     onClick: function onClick() {
-                        onBackClick();
+                        onBackClick(null);
                     }
-                }, "Back"), !isFav && /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
-                    className: "add-list__button",
-                    variant: "warning",
-                    onClick: this.addFavMovie
-                }, "Add to your list"), isFav && /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
-                    className: "add-list__button",
-                    variant: "warning",
-                    onClick: this.removeFavMovie
-                }, "Remove from your list"))))));
+                }, "Back"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
+                    id: "movie-view-button",
+                    onClick: function onClick() {}
+                }, "Add to Favorites"))));
             }
         }
     ]);
     return MovieView1;
 }(_react["default"].Component);
 exports.MovieView = MovieView;
-MovieView.propTypes = {
-    movie: _propTypes["default"].shape({
-        Title: _propTypes["default"].string.isRequired,
-        Description: _propTypes["default"].string.isRequired,
-        ImagePath: _propTypes["default"].string.isRequired,
-        Genre: _propTypes["default"].shape({
-            Name: _propTypes["default"].string.isRequired
-        })
-    }).isRequired,
-    onBackClick: _propTypes["default"].func.isRequired
-};
 
   $parcel$ReactRefreshHelpers$e9f6.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","./movie-view.scss":"jnlR5","react-router-dom":"cHIiW","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","axios":"jo6P5"}],"jnlR5":[function() {},{}],"eBaMl":[function() {},{}],"9tpci":[function(require,module,exports) {
+},{"react":"21dqq","./movie-view.scss":"jnlR5","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A"}],"jnlR5":[function() {},{}],"eBaMl":[function() {},{}],"9tpci":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad4a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
