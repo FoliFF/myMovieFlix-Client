@@ -1,14 +1,12 @@
-import React from 'react';
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import React from "react";
+import { Navbar, Nav, Button } from "react-bootstrap";
+import "./navbar-view.scss";
 
-import './navbar-view.scss';
-
-function Navigation({ logOut }) {
+export function Navigation({ logOut }) {
     const user = localStorage.getItem('user');
-
     const onLoggedOut = () => {
         localStorage.clear();
-        window.open('/', '_self');
+        window.open("/", "_self");
     };
 
     const isAuth = () => {
