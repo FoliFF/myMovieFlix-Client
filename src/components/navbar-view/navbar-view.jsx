@@ -1,9 +1,7 @@
 import React from "react";
 import "./navbar-view.scss";
 
-import {
-    Navbar, Container, Nav, NavDropdown,
-} from "react-bootstrap";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 
 export function NavbarView({ user }) {
     const onLoggedOut = () => {
@@ -14,7 +12,7 @@ export function NavbarView({ user }) {
     return (
         <Navbar bg="" expand="lg">
             <Container>
-                <Navbar.Brand href="#home">myFlix</Navbar.Brand>
+                <Navbar.Brand href="#home">myMovieFlix</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">

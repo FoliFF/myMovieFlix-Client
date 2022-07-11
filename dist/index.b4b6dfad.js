@@ -26394,7 +26394,8 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 });
                 localStorage.setItem("token", authData.token);
                 localStorage.setItem("user", authData.user.Username);
-                this.getMovies(authData.token); //localStorage.clear();
+                this.getMovies(authData.token); //Use localStorage.clear(); if the movies doesn't list
+            //localStorage.clear();
             }
         },
         {
@@ -26404,7 +26405,8 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 localStorage.removeItem("user");
                 this.setState({
                     user: null
-                }); //localStorage.clear();
+                }); //Use localStorage.clear(); if the movies doesn't list
+            //localStorage.clear();
             }
         },
         {
@@ -26430,7 +26432,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                             md: 8
                         }, /*#__PURE__*/ _react["default"].createElement(_movieView.MovieView, {
                             movie: movies.find(function(m) {
-                                return m._id === match.params.movieId;
+                                return m._id === match.params.MovieId;
                             })
                         }));
                     }
@@ -26568,7 +26570,7 @@ exports.MainView = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","axios":"jo6P5","../login-view/login-view":"9YtA0","../register-view/register-view":"6jAr6","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","react-bootstrap":"3AD9A","./main-view.scss":"eBaMl","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../director-view/director-view":"9tpci","../genre-view/genre-view":"4tuA0","../profile-view/profile-view":"2vVqf","../navbar-view/navbar-view":"divrl","react-router-dom":"cHIiW"}],"jo6P5":[function(require,module,exports) {
+},{"react":"21dqq","axios":"jo6P5","../login-view/login-view":"9YtA0","../register-view/register-view":"6jAr6","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","react-bootstrap":"3AD9A","./main-view.scss":"eBaMl","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../director-view/director-view":"9tpci","../genre-view/genre-view":"4tuA0","../profile-view/profile-view":"2vVqf","react-router-dom":"cHIiW","../navbar-view/navbar-view":"divrl"}],"jo6P5":[function(require,module,exports) {
 module.exports = require("./lib/axios");
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -46204,17 +46206,16 @@ var DirectorView = /*#__PURE__*/ function(_React$Component) {
             key: "render",
             value: function render() {
                 var _this$props = this.props, director = _this$props.director, onBackClick = _this$props.onBackClick;
-                return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
+                return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
                     text: "dark",
                     className: "directorCard"
                 }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Header, {
                     className: "directorTitle"
                 }, director.Name), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Text, null, " Born: ", director.Birth), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Text, null, " Biography: ", director.Bio), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
-                    variant: "warning",
                     onClick: function onClick() {
-                        onBackClick();
+                        onBackClick(null);
                     }
-                }, "Back")));
+                }, "Back"))))));
             }
         }
     ]);
@@ -46345,15 +46346,14 @@ var GenreView = /*#__PURE__*/ function(_React$Component) {
             key: "render",
             value: function render() {
                 var _this$props = this.props, genre = _this$props.genre, onBackClick = _this$props.onBackClick;
-                return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
+                return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
                     text: "dark",
                     className: "genreCard"
                 }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Header, null, genre.Name), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card.Text, null, genre.Description), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
-                    variant: "warning",
                     onClick: function onClick() {
-                        onBackClick();
+                        onBackClick(null);
                     }
-                }, "Back")));
+                }, "Back"))))));
             }
         }
     ]);
@@ -46662,7 +46662,7 @@ function NavbarView(_ref) {
         expand: "lg"
     }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Container, null, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Brand, {
         href: "#home"
-    }, "myFlix"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
+    }, "myMovieFlix"), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
         "aria-controls": "basic-navbar-nav"
     }), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Navbar.Collapse, {
         id: "basic-navbar-nav"
@@ -46694,7 +46694,7 @@ $RefreshReg$(_c, "NavbarView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","./navbar-view.scss":"cYTZj","react-bootstrap":"3AD9A","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"cYTZj":[function() {},{}],"lJZlQ":[function() {},{}],"lDbex":[function(require,module,exports) {
+},{"react":"21dqq","react-bootstrap":"3AD9A","./navbar-view.scss":"cYTZj","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"cYTZj":[function() {},{}],"lJZlQ":[function() {},{}],"lDbex":[function(require,module,exports) {
 /*! For license information please see react-bootstrap.min.js.LICENSE.txt */ !function(e, t) {
     module.exports = t(require("react"), require("react-dom"));
 }(self, (e1, t1)=>(()=>{

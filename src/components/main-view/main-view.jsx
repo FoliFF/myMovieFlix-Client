@@ -67,6 +67,7 @@ export class MainView extends React.Component {
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
+        //Use localStorage.clear(); if the movies doesn't list
         //localStorage.clear();
     }
 
@@ -76,6 +77,7 @@ export class MainView extends React.Component {
         this.setState({
             user: null
         });
+        //Use localStorage.clear(); if the movies doesn't list
         //localStorage.clear();
     }
 
@@ -98,7 +100,7 @@ export class MainView extends React.Component {
                         return (
                             <Col md={8}>
                                 <MovieView
-                                    movie={movies.find((m) => m._id === match.params.movieId)}
+                                    movie={movies.find((m) => m._id === match.params.MovieId)}
                                 />
                             </Col>
                         );
