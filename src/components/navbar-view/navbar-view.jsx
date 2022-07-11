@@ -31,7 +31,7 @@ export function Navigation({ logOut }) {
         >
             {/*<Container>*/}
             <Navbar.Brand id="appName" href="/">
-                techFlix
+                myMovieFlix-Client
             </Navbar.Brand>
 
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
