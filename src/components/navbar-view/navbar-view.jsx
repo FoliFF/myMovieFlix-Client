@@ -1,41 +1,65 @@
 import React from "react";
+import { Navbar, Nav, Button } from "react-bootstrap";
 import "./navbar-view.scss";
 
-import {
-    Navbar, Container, Nav, NavDropdown,
-} from "react-bootstrap";
-
-export function NavbarView({ user }) {
+export function Navigation({ logOut }) {
+    const user = localStorage.getItem('user');
     const onLoggedOut = () => {
         localStorage.clear();
         window.open("/", "_self");
     };
 
-    return (
-        <Navbar bg="" expand="lg">
-            <Container>
-                <Navbar.Brand href="#home">myFlix</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Movies</Nav.Link>
-                        <NavDropdown title="" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Watchlist</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Profile
-                            </NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
-                                Log out
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                    </Nav>
+    const isAuth = () => {
+        //if (typeof window == 'undefined') {
+        //  return false;
+        // }
+        if (localStorage.getItem('token')) {
+            return localStorage.getItem('token');
+        } else {
+            return false;
+        }
+    };
 
-                </Navbar.Collapse>
-            </Container>
+    return (
+        <Navbar
+            id="main-nav"
+            className="mb-5"
+            bg="dark"
+            variant="dark"
+            expand="lg"
+            sticky="top"
+        >
+            {/*<Container>*/}
+            <Navbar.Brand id="appName" href="/">
+                myMovieFlix-Client
+            </Navbar.Brand>
+
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse
+                className="justify-content-end"
+                id="responsive-navbar-nav"
+            >
+                <Nav>
+                    {isAuth() && (
+                        <Nav.Link className="navbar-link" href={`/users/${user}`}>
+                            MyPage
+                        </Nav.Link>
+                    )}
+
+                    {isAuth() && (
+                        <Button
+                            className="navbar-button"
+                            variant="outline-danger"
+                            onClick={logOut}
+                        >
+                            LogOut
+                        </Button>
+                    )}
+                </Nav>
+            </Navbar.Collapse>
+            {/*</Container>*/}
         </Navbar>
     );
 }
 
-export default NavbarView;
+export default Navigation;

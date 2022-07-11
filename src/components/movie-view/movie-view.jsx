@@ -36,17 +36,8 @@ export class MovieView extends React.Component {
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
-                            <Button
-                                id="movie-view-button"
-                                onClick={() => {
-                                    onBackClick(null);
-                                }}
-                            >
-                                Back
-                            </Button>
-                            <Button id="movie-view-button" onClick={() => { }}>
-                                Add to Favorites
-                            </Button>
+                            <Button id="movie-view-button" onClick={() => { onBackClick(null); }}>Back</Button>
+                            <Button id="movie-view-button" onClick={() => { }}>Add to Favorites</Button>
                         </Col>
                     </Row>
                 )}
