@@ -26133,7 +26133,7 @@ var _movieView = require("../movie-view/movie-view");
 var _directorView = require("../director-view/director-view");
 var _genreView = require("../genre-view/genre-view");
 var _profileView = require("../profile-view/profile-view");
-var _navbarView = require("../navbar-view/navbar-view");
+var _navbarView = _interopRequireDefault(require("../navbar-view/navbar-view"));
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 require("./main-view.scss");
@@ -26245,7 +26245,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 if (accessToken !== null) {
                     this.setState({
                         user: localStorage.getItem("user")
-                    });
+                    }); //this.getMovies(accessToken);
                     localStorage.clear();
                 }
             }
@@ -26266,7 +26266,8 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                     });
                 })["catch"](function(error) {
                     console.log(error);
-                }); //localStorage.clear();
+                }); //This is when in case when the page isn't loading.
+            //localStorage.clear();
             }
         },
         {
@@ -26296,7 +26297,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
             value: function render() {
                 var _this3 = this;
                 var _this$state = this.state, movies = _this$state.movies, user1 = _this$state.user;
-                return /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/ _react["default"].createElement(_navbarView.Navigation, {
+                return /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/ _react["default"].createElement(_navbarView["default"], {
                     logOut: function logOut() {
                         return _this3.onLoggedOut();
                     }
@@ -26329,7 +26330,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                 }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route, {
                     path: "/register",
                     render: function render() {
-                        if (user1) return /*#__PURE__*/ _react["default"].createElement(Redirect, {
+                        if (user1) return /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Redirect, {
                             to: "/"
                         });
                         return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_registerView.RegistrationView, null));
@@ -26338,7 +26339,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                     path: "/users/".concat(user1),
                     render: function render(_ref) {
                         var history = _ref.history;
-                        if (!user1) return /*#__PURE__*/ _react["default"].createElement(Redirect, {
+                        if (!user1) return /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Redirect, {
                             to: "/"
                         });
                         return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_profileView.ProfileView, {

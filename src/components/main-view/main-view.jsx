@@ -1,17 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 
-import { LoginView } from '../login-view/login-view';
-import { RegistrationView } from '../register-view/register-view'
-import { MovieCard } from '../movie-card/movie-card';
-import { MovieView } from '../movie-view/movie-view';
-import { DirectorView } from '../director-view/director-view';
-import { GenreView } from '../genre-view/genre-view';
-import { ProfileView } from '../profile-view/profile-view';
-import { Navigation } from '../navbar-view/navbar-view';
+import { LoginView } from "../login-view/login-view";
+import { RegistrationView } from "../register-view/register-view";
+import { MovieCard } from "../movie-card/movie-card";
+import { MovieView } from "../movie-view/movie-view";
+import { DirectorView } from "../director-view/director-view";
+import { GenreView } from "../genre-view/genre-view";
+import { ProfileView } from "../profile-view/profile-view";
+import Navigation from "../navbar-view/navbar-view";
 
 import { Row, Col, Container } from 'react-bootstrap';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import "./main-view.scss";
 
@@ -38,6 +38,7 @@ export class MainView extends React.Component {
             this.setState({
                 user: localStorage.getItem("user")
             });
+            //this.getMovies(accessToken);
             localStorage.clear();
         }
     }
@@ -55,6 +56,7 @@ export class MainView extends React.Component {
             .catch(function (error) {
                 console.log(error);
             });
+        //This is when in case when the page isn't loading.
         //localStorage.clear();
     }
 
