@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../register-view/register-view";
@@ -8,7 +9,9 @@ import { MovieView } from "../movie-view/movie-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { ProfileView } from "../profile-view/profile-view";
-import Navigation from "../navbar-view/navbar-view";
+import { Navigation } from "../navbar-view/navbar-view";
+import { setMovies, setUser } from '../../actions/actions';
+
 
 import { Row, Col, Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
@@ -51,7 +54,8 @@ export class MainView extends React.Component {
             .then((response) => {
                 // Assign the result to the state
                 console.log("response", response.data);
-                this.setState({ movies: response.data });
+                //this.setState({ movies: response.data });
+                this.props.setMovies(response.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -222,3 +226,9 @@ export class MainView extends React.Component {
         );
     }
 }
+
+let mapStateToProps = state => {
+    return { movies: state.movies }
+}
+
+export default connect(mapStateToProps, { setMovies })(MainView);
