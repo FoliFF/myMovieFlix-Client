@@ -3,7 +3,16 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { setUser, validateInput } from '../../actions/actions';
+import { connect } from 'react-redux';
 import "./login-view.scss";
+
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
 
 /*
  * Credentials I know works for the myMovieFlix-Client;
@@ -12,7 +21,7 @@ import "./login-view.scss";
  * Password=new2123
  */
 
-export function LoginView(props) {
+function LoginView({ user, setUser, validateInput, onLoggedIn }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   // Declare hook for each input
@@ -49,7 +58,7 @@ export function LoginView(props) {
         })
         .then((response) => {
           const data = response.data;
-          props.onLoggedIn(data);
+          onLoggedIn(data);
         })
         .catch((e) => {
           console.log('no such user');
@@ -89,3 +98,5 @@ LoginView.propTypes = {
   }),
   onLoggedIn: PropTypes.func.isRequired
 };
+
+export default connect(mapStateToProps, { setUser, validateInput })(LoginView);
